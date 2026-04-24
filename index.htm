@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pillar Educational Publishers | Lab & School Supplies Kenya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --primary-green: #39FF14; /* WhatsApp Green */
+            --vibrant-orange: #FF8C00;
+            --deep-black: #080808;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: white;
+            color: var(--deep-black);
+            overflow-x: hidden;
+        }
+
+        .text-primary { color: var(--primary-green); }
+        .text-orange { color: var(--vibrant-orange); }
+        .bg-primary { background-color: var(--primary-green); }
+        .bg-orange { background-color: var(--vibrant-orange); }
+        .bg-dark { background-color: var(--deep-black); }
+
+        /* Smooth Appear Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.3s; }
+        .stagger-3 { transition-delay: 0.5s; }
+
+        .nav-transparent {
+            background: transparent;
+            transition: all 0.4s ease;
+        }
+
+        .nav-scrolled {
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(37, 211, 102, 0.2);
+        }
+
+        .hero-video-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-green);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        .b-a-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .b-a-overlay {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 10px;
+        }
+        
+        /* Mobile Menu Fix */
+        #mobile-menu {
+            z-index: 9999 !important;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .equipment-tag {
+            background: rgba(37, 211, 102, 0.1);
+            color: var(--primary-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 4px;
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+
+    <!-- Navigation -->
+   <nav id="navbar" class="fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out py-4 w-full">
+    <div id="nav-container" class="container mx-auto px-6 flex justify-between items-center transition-all duration-500">
+        <div class="relative w-48 h-14 bg-transparent overflow-hidden flex items-center justify-center">
+            <img src="https://lh3.googleusercontent.com/u/0/d/1P9lG4Jg1jzWWxaN0gR-PL4wNPwfNO1sg" alt="Pillar Logo" class="relative z-10 w-full h-full object-contain">
+        </div>
+        
+        <div class="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest items-center">
+            <a href="#" onclick="showPage('home')" class="nav-link text-white hover:text-primary transition">Home</a>
+            <a href="#" onclick="showPage('labs')" class="nav-link text-white hover:text-primary transition">Labs</a>
+            <a href="#" onclick="showPage('schools')" class="nav-link text-white hover:text-primary transition">Schools</a>
+            <a href="#" onclick="showPage('logistics')" class="nav-link text-white hover:text-primary transition">Kenya-Wide</a>
+            <button onclick="window.location.href='https://wa.me/254700000000'" class="bg-primary hover:bg-white hover:text-black text-black px-7 py-2.5 rounded-full font-extrabold transition-all hover:scale-105">WHATSAPP US</button>
+        </div>
+
+        <button id="mobile-toggle" onclick="toggleMobileMenu()" class="md:hidden text-white text-3xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="bg-dark translate-x-full transition-transform duration-500 flex flex-col items-center justify-center space-y-10 text-3xl font-black">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-white text-4xl"><i class="fas fa-times"></i></button>
+        <div class="w-40 h-12 bg-zinc-800 rounded mb-4 overflow-hidden border border-primary/30">
+             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover" alt="Logo">
+        </div>
+        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="text-white hover:text-primary">Home</a>
+        <a href="#" onclick="showPage('labs'); toggleMobileMenu()" class="text-white hover:text-primary">Lab Installations</a>
+        <a href="#" onclick="showPage('schools'); toggleMobileMenu()" class="text-white hover:text-primary">School Equipment</a>
+        <a href="#" onclick="showPage('logistics'); toggleMobileMenu()" class="text-white hover:text-primary">Transport</a>
+        <a href="https://wa.me/254700000000" class="text-primary underline mt-6">Get Quote</a>
+    </div>
+
+    <main id="main-content">
+        
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page-content">
+            <div class="hero-video-bg h-screen flex items-center justify-center text-center px-6">
+                <div class="max-w-5xl reveal active stagger-1">
+                    
+                    <h1 class="text-5xl md:text-5xl font-black text-white mb-8 leading-tight">
+                        Precision <span class="text-primary">Lab</span> & Learning.
+                    </h1>
+                    <p class="text-lg md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                        A dynamic, customer-focused partner specializing 
+                    </p>
+                    <div class="flex flex-wrap gap-6 justify-center">
+                        <button onclick="showPage('labs')" class="bg-primary text-black font-black px-10 py-5 rounded-xl hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all">VIEW OUR LABS</button>
+                        <button onclick="showPage('schools')" class="border-2 border-white text-white font-black px-10 py-5 rounded-xl hover:bg-white hover:text-black transition-all">SCHOOL CATALOG</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="about" class="py-32 container mx-auto px-6 reveal">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bb1178329?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl relative z-10" alt="Lab Work">
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse"></div>
+                    </div>
+                    <div>
+                        <h6 class="text-primary font-black tracking-widest mb-4 uppercase">Who We Are</h6>
+                        <h2 class="text-5xl font-extrabold mb-8 leading-tight">Your Partner in <span class="text-orange">Educational Excellence</span></h2>
+                        <p class="text-gray-500 text-lg mb-8 leading-relaxed">
+                            Pillar Educational Publishers is a dynamic company specializing in the supply of science equipment, educational materials, and school supplies. We are committed to supporting schools, colleges, and learning centers by providing quality products that enhance teaching and practical education.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                            <div class="p-6 bg-zinc-50 rounded-2xl border-l-4 border-primary">
+                                <h4 class="text-xl font-black mb-2 flex items-center gap-2">
+                                    <i class="fas fa-bullseye text-primary"></i> Our Mission
+                                </h4>
+                                <p class="text-gray-500 text-sm">To empower education through the provision of high-quality science equipment and innovative learning resources that promote academic success.</p>
+                            </div>
+                            <div class="p-6 bg-zinc-50 rounded-2xl border-l-4 border-orange">
+                                <h4 class="text-xl font-black mb-2 flex items-center gap-2">
+                                    <i class="fas fa-eye text-orange"></i> Our Vision
+                                </h4>
+                                <p class="text-gray-500 text-sm">To become a leading educational supplier recognized for transforming learning environments through quality products and outstanding service.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CORE VALUES SECTION -->
+            <div class="bg-zinc-50 py-32 border-y border-zinc-200">
+                <div class="container mx-auto px-6 reveal">
+                    <div class="text-center mb-20">
+                        <h6 class="text-orange font-black tracking-widest mb-4 uppercase">The Pillar Way</h6>
+                        <h2 class="text-5xl font-black">Our Core <span class="text-primary">Values</span></h2>
+                    </div>
+                    <div class="grid md:grid-cols-5 gap-8">
+                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-shield-alt text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Quality</h4>
+                            <p class="text-gray-400 text-xs">Durable and reliable products for long-term use.</p>
+                        </div>
+                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
+                            <div class="w-14 h-14 bg-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-handshake text-2xl text-orange"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Integrity</h4>
+                            <p class="text-gray-400 text-xs">Operating honestly and transparently in all dealings.</p>
+                        </div>
+                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-smile text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Customer Satisfaction</h4>
+                            <p class="text-gray-400 text-xs">Prioritizing the unique needs of every institution.</p>
+                        </div>
+                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
+                            <div class="w-14 h-14 bg-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-lightbulb text-2xl text-orange"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Innovation</h4>
+                            <p class="text-gray-400 text-xs">Embracing modern educational and practical solutions.</p>
+                        </div>
+                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
+                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-bolt text-2xl text-primary"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Efficiency</h4>
+                            <p class="text-gray-400 text-xs">Ensuring timely delivery and dependable service.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LABS PAGE (Updated with Science Equipment Info) -->
+       <section id="page-labs" class="page-content hidden">
+            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Lab Header">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent via-75% to-white"></div>
+                </div>
+                
+                <div class="container mx-auto text-center relative z-10 reveal">
+                    <h1 class="text-6xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter drop-shadow-2xl">Science <span class="text-primary">Equipment</span></h1>
+                    <p class="text-gray-100 text-xl max-w-3xl mx-auto font-medium drop-shadow-lg">Precision instruments and lab installations for Kenyan institutions.</p>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-12 bg-white">
+                </div>
+
+            <div class="container mx-auto px-6 py-24">
+                <div class="mb-32 reveal">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-black mb-4">Lab <span class="text-primary">Transformation</span></h2>
+                        <p class="text-gray-500">From empty shells to fully functional, ISO-certified research environments.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div class="relative group overflow-hidden rounded-3xl shadow-lg border border-zinc-200">
+                            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE INSTALLATION</span>
+                            <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800" class="w-full h-[400px] object-cover grayscale brightness-75" alt="Unfinished Lab Space">
+                        </div>
+                        <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
+                            <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER INSTALLATION</span>
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800" class="w-full h-[400px] object-cover" alt="Completed Lab Space">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-32 bg-zinc-900 rounded-[3rem] p-12 text-center reveal">
+                    <h2 class="text-3xl font-black text-white mb-8">Rigorous <span class="text-orange">Equipment Testing</span></h2>
+                    <div class="max-w-4xl mx-auto aspect-video bg-black rounded-2xl overflow-hidden relative group border border-white/10">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <button class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-black text-2xl hover:scale-110 transition-transform">
+                                <i class="fas fa-play ml-1"></i>
+                            </button>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-50" alt="Video testing preview">
+                        <div class="absolute bottom-6 left-6 text-left">
+                            <p class="text-white font-bold">Watch: Gas & Safety System Validation</p>
+                            <p class="text-primary text-sm uppercase font-black">On-site Performance Test</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16 items-start reveal">
+                    <div class="space-y-12">
+                        <h2 class="text-4xl font-black mb-4">Core <span class="text-primary">Specializations</span></h2>
+                        <div class="grid gap-6">
+                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
+                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-atom"></i></div>
+                                <div><h4 class="text-xl font-bold">Physics Labs</h4><p class="text-gray-400 text-sm">Optics, mechanics, and electronics gear.</p></div>
+                            </div>
+                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
+                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-flask"></i></div>
+                                <div><h4 class="text-xl font-bold">Chemistry Labs</h4><p class="text-gray-400 text-sm">Glassware and chemical handling tools.</p></div>
+                            </div>
+                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
+                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-dna"></i></div>
+                                <div><h4 class="text-xl font-bold">Biology Labs</h4><p class="text-gray-400 text-sm">Microscopy and anatomical models.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark p-12 rounded-[3rem] text-white">
+                        <h3 class="text-3xl font-black mb-8 text-primary uppercase">Inventory</h3>
+                        <div class="flex flex-wrap -m-1">
+                            <span class="equipment-tag">Microscopes</span><span class="equipment-tag">Beakers</span>
+                            <span class="equipment-tag">Balances</span><span class="equipment-tag">Experiment Kits</span>
+                            <span class="equipment-tag">Lab Glassware</span><span class="equipment-tag">Safety Gear</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-schools" class="page-content hidden">
+            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="School Header">
+                    <div class="absolute inset-0 bg-gradient-to-b from-orange-600/40 via-transparent via-70% to-white"></div>
+                </div>
+                
+                <div class="container mx-auto text-center relative z-10 reveal">
+                    <h1 class="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl">Educational <span class="text-orange-500">Publishing</span></h1>
+                    <p class="max-w-2xl mx-auto font-bold text-white uppercase tracking-wider drop-shadow-lg">Modernizing Learning Environments</p>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-12 bg-white">
+                </div>
+
+            <div class="container mx-auto px-6 py-24">
+                <div class="mb-32 reveal">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-black mb-4">Classroom <span class="text-orange">Modernization</span></h2>
+                        <p class="text-gray-500">Upgrade your institution's furniture to ergonomic standards for better learning.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+                            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE</span>
+                            <img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&q=80&w=800" class="w-full h-[450px] object-cover grayscale brightness-50" alt="Before Furniture">
+                        </div>
+                        <div class="relative group overflow-hidden rounded-3xl shadow-lg">
+                            <span class="absolute top-6 left-6 z-20 bg-orange text-white px-5 py-2 rounded-full text-xs font-black">AFTER</span>
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800" class="w-full h-[450px] object-cover" alt="After Furniture">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-20 text-center reveal">
+                    <h2 class="text-5xl font-black mb-6">Educational <span class="text-orange">Publishing & Equipment</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto text-lg">We offer a comprehensive suite of educational publications and furnishings tailored for excellence.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-chair"></i></div>
+                        <h3 class="text-2xl font-black mb-4">School Furniture</h3>
+                        <p class="text-gray-500">Durable, ergonomic desks and chairs designed for long study hours and classroom comfort.</p>
+                    </div>
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-book-open"></i></div>
+                        <h3 class="text-2xl font-black mb-4">Revision Books</h3>
+                        <p class="text-gray-500">High-quality publications and curriculum-aligned study guides for Kenyan learners.</p>
+                    </div>
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-cloud-sun"></i></div>
+                        <h3 class="text-2xl font-black mb-4">Weather Stations</h3>
+                        <p class="text-gray-500">Professional installation of weather station kits for geography and science departments.</p>
+                    </div>
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-map"></i></div>
+                        <h3 class="text-2xl font-black mb-4">Charts & Posters</h3>
+                        <p class="text-gray-500">Laminated, high-resolution learning charts and educational posters for all subjects.</p>
+                    </div>
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-file-signature"></i></div>
+                        <h3 class="text-2xl font-black mb-4">Exam Materials</h3>
+                        <p class="text-gray-500">Provision of specialized stationary and materials strictly curated for national examinations.</p>
+                    </div>
+                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
+                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-tshirt"></i></div>
+                        <h3 class="text-2xl font-black mb-4">School Branding</h3>
+                        <p class="text-gray-500">Customized branding materials to elevate your institution's identity and professional presence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- LOGISTICS PAGE -->
+        <section id="page-logistics" class="page-content hidden">
+           <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Logistics Header">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent via-75% to-white"></div>
+                </div>
+                <div class="container mx-auto text-center relative z-10 reveal">
+                    <h1 class="text-6xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter drop-shadow-2xl">Across <span class="text-primary">Kenya</span></h1>
+                    <p class="text-xl text-gray-100 font-medium drop-shadow-lg">Delivering quality to all 47 counties.</p>
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 py-12 bg-white">
+                </div>
+            <div class="container mx-auto px-6 py-24 reveal">
+                <div class="grid lg:grid-cols-4 gap-12 text-center">
+                    <div class="bg-zinc-50 p-10 rounded-2xl">
+                        <div class="text-5xl font-black text-primary mb-2">254+</div>
+                        <h5 class="font-bold uppercase tracking-widest text-xs">Colleges Supplied</h5>
+                    </div>
+                    <div class="bg-zinc-50 p-10 rounded-2xl">
+                        <div class="text-5xl font-black text-orange mb-2">1,000+</div>
+                        <h5 class="font-bold uppercase tracking-widest text-xs">Schools Reached</h5>
+                    </div>
+                    <div class="bg-zinc-50 p-10 rounded-2xl">
+                        <div class="text-5xl font-black text-primary mb-2">47</div>
+                        <h5 class="font-bold uppercase tracking-widest text-xs">Counties Covered</h5>
+                    </div>
+                    <div class="bg-zinc-50 p-10 rounded-2xl">
+                        <div class="text-5xl font-black text-orange mb-2">20+</div>
+                        <h5 class="font-bold uppercase tracking-widest text-xs">Govt Partners</h5>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-24 pb-12 border-t border-white/5">
+    <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-16 mb-20">
+            
+            <div class="space-y-8">
+                <div class="w-48 h-14 bg-transparent overflow-hidden flex items-center justify-start">
+                    <img src="YOUR_LOGO_URL_HERE" alt="Pillar Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Pillar Educational Publishers is committed to transforming Kenyan education through precision engineering and high-quality learning resources.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Navigation</h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
+                    <li><a href="#" onclick="showPage('home')" class="hover:text-primary transition-colors">Home Overview</a></li>
+                    <li><a href="#" onclick="showPage('labs')" class="hover:text-primary transition-colors">Science Installations</a></li>
+                    <li><a href="#" onclick="showPage('schools')" class="hover:text-primary transition-colors">School Catalog</a></li>
+                    <li><a href="#" onclick="showPage('logistics')" class="hover:text-primary transition-colors">Logistics & Supply</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Our Solutions</h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Lab Design & Equipment
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> School Furniture
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Revision Books
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Weather Stations
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Stay Updated</h4>
+                <p class="text-gray-400 text-xs mb-6 font-medium">Subscribe to receive updates on new science gear and educational materials.</p>
+                <form class="relative group">
+                    <input type="email" placeholder="Your email address" 
+                           class="w-full bg-zinc-900 border border-white/10 rounded-xl py-4 px-6 text-sm text-white focus:outline-none focus:border-primary transition-all">
+                    <button type="submit" class="absolute right-2 top-2 bottom-2 bg-primary text-black px-4 rounded-lg font-black text-xs hover:bg-white transition-all">
+                        JOIN
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-gray-500 text-xs font-bold uppercase tracking-widest">
+                &copy; 2026 PILLAR EDUCATIONAL PUBLISHERS. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex gap-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+                <a href="#" class="hover:text-white transition">Admin Portal</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- WhatsApp Floating -->
+    <a href="https://wa.me/254700000000" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function updateNav() {
+            const navbar = document.getElementById("navbar");
+            const isHome = !document.getElementById('page-home').classList.contains('hidden');
+            
+            if (isHome) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("nav-scrolled");
+                    navbar.classList.remove("nav-transparent", "py-4");
+                    navbar.classList.add("py-2");
+                } else {
+                    navbar.classList.remove("nav-scrolled", "py-2");
+                    navbar.classList.add("nav-transparent", "py-4");
+                }
+            } else {
+                navbar.classList.add("nav-scrolled");
+                navbar.classList.remove("nav-transparent");
+            }
+        }
+
+        window.onscroll = function() {
+            updateNav();
+            handleReveal();
+        };
+
+        function handleReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(r => {
+                const windowHeight = window.innerHeight;
+                const elementTop = r.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    r.classList.add("active");
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("translate-x-full");
+            if (!menu.classList.contains("translate-x-full")) {
+                document.body.style.overflow = "hidden";
+            } else {
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-' + pageId).classList.remove('hidden');
+            updateNav();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(handleReveal, 100);
+        }
+
+        window.onload = () => {
+            updateNav();
+            handleReveal();
+        };
+
+       let lastScrollTop = 0;
+    const navbar = document.getElementById("navbar");
+    const navContainer = document.getElementById("nav-container");
+
+    function updateNav() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isHome = !document.getElementById('page-home').classList.contains('hidden');
+        
+        // 1. DARK GLASS PILL TRANSFORMATION
+        if (scrollTop > 100 || !isHome) {
+            navbar.classList.remove("w-full", "py-4");
+            navbar.classList.add("top-6", "w-[95%]", "md:w-max");
+            
+            navContainer.classList.add(
+                "bg-black/60",
+                "backdrop-blur-md",
+                "rounded-full",
+                "px-8", "py-2",
+                "border", "border-white/10",
+                "shadow-2xl"
+            );
+            navContainer.classList.remove("container");
+        } else {
+            // TOP STATE (Home Hero) - Keep it wide and transparent
+            navbar.classList.add("w-full", "py-4");
+            navbar.classList.remove("top-6", "w-[95%]", "md:w-max");
+            
+            navContainer.classList.remove(
+                "bg-black/60", "backdrop-blur-md", "rounded-full", 
+                "px-8", "py-2", "border", "border-white/10", "shadow-2xl"
+            );
+            navContainer.classList.add("container");
+        }
+
+        // 2. HEADROOM LOGIC
+        // We only hide the navbar if we are well away from the top (> 400px)
+        if (scrollTop > 400) {
+            if (scrollTop > lastScrollTop) {
+                // Scrolling Down - Hide
+                navbar.style.transform = "translateX(-50%) translateY(-150%)";
+            } else {
+                // Scrolling Up - Show
+                navbar.style.transform = "translateX(-50%) translateY(0)";
+            }
+        } else {
+            // Force show when near the top or at the top
+            navbar.style.transform = "translateX(-50%) translateY(0)";
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+
+    // Scroll Reveal Logic
+    function handleReveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(r => {
+            const windowHeight = window.innerHeight;
+            const elementTop = r.getBoundingClientRect().top;
+            const elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                r.classList.add("active");
+            }
+        });
+    }
+
+    // Page Switching Logic
+    function showPage(pageId) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+        document.getElementById('page-' + pageId).classList.remove('hidden');
+        
+        // Reset scroll and update nav state immediately
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Timeout ensures the 'hidden' classes are processed before measuring scroll
+        setTimeout(() => {
+            updateNav();
+            handleReveal();
+        }, 50);
+    }
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("translate-x-full");
+        document.body.style.overflow = menu.classList.contains("translate-x-full") ? "auto" : "hidden";
+    }
+
+    // Initialize everything
+    window.onscroll = () => {
+        updateNav();
+        handleReveal();
+    };
+
+    window.onload = () => {
+        updateNav();
+        handleReveal();
+    };
+    </script>
+</body>
+</html>
