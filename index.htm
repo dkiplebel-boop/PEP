@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Pillar Educational Publishers | Lab & School Supplies Kenya</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -139,6 +140,25 @@
     animation: scrollBounce 2s infinite;
 }
 
+       /* Prevents horizontal overflow globally */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Force images and videos to stay within their containers */
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive typography: text gets smaller on tiny screens */
+@media (max-width: 380px) {
+    h1 { font-size: 2.5rem !important; }
+    h2 { font-size: 1.8rem !important; }
+    .text-7xl { font-size: 3rem !important; }
+}
               
     </style>
 </head>
@@ -340,9 +360,9 @@
                         Section // Lab Equipment
                     </span>
                 </div>
-                <h1 class="text-7xl md:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
-                    SCIENCE <br> <span class="text-primary">EQUIPMENT</span>
-                </h1>
+               <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
+    SCIENCE <br> <span class="text-primary">EQUIPMENT</span>
+</h1>
                 <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
                     Precision instruments and laboratory installations for Kenyan research standards.
                 </p>
@@ -386,7 +406,7 @@
     </div>
 </div>
 
-            <div class="mb-32 bg-dark py-20 px-6 reveal">
+           <div class="mb-32 bg-dark py-20 px-6 reveal">
     <div class="container mx-auto">
         <div class="mb-12 text-left border-l-4 border-orange pl-6">
             <h2 class="text-4xl font-black text-white tracking-tighter uppercase">
@@ -397,7 +417,7 @@
             </p>
         </div>
 
-        <div class="max-w-6xl mx-auto aspect-video bg-black relative group border border-white/5 overflow-hidden">
+        <div class="max-w-6xl mx-auto aspect-[21/9] max-h-[450px] bg-black relative group border border-white/5 overflow-hidden shadow-2xl">
             
             <video 
                 id="testing-video"
@@ -415,17 +435,22 @@
                 <span class="text-[10px] font-mono text-white/50 tracking-tighter uppercase">REC // SYSTEM_CHECK</span>
             </div>
 
-            <div class="absolute bottom-10 left-10 text-left pointer-events-none">
-                <div class="flex items-center gap-4 mb-4">
-                    <span class="px-4 py-1 bg-primary text-black text-[10px] font-black uppercase">Standard: ISO LAB 2026</span>
-                    <span class="text-white/40 font-mono text-[10px]">FLOW RATE: OPTIMAL</span>
-                </div>
-                <p class="text-white text-2xl font-black tracking-tight uppercase leading-none">Gas Outlet Verification</p>
-                <div class="h-1 w-20 bg-orange mt-2"></div>
-            </div>
-
             <div class="absolute inset-0 pointer-events-none border-y border-white/5">
                 <div class="w-full h-[1px] bg-white/10 absolute top-0 animate-[scan_4s_linear_infinite]"></div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto mt-8 flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-white/10 pt-8">
+            <div class="text-left">
+                <p class="text-white text-2xl font-black tracking-tight uppercase leading-none mb-4">Gas Outlet Verification</p>
+                <div class="flex items-center gap-4">
+                    <span class="px-4 py-1 bg-primary text-black text-[10px] font-black uppercase">Standard: ISO LAB 2026</span>
+                    <span class="text-white/40 font-mono text-[10px] uppercase tracking-widest">Flow Rate: Optimal</span>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <div class="h-1 w-20 bg-orange ml-auto"></div>
+                <p class="text-[10px] font-mono text-zinc-600 uppercase mt-2 tracking-[0.2em]">Pillar_Safety_Protocol_v2.1</p>
             </div>
         </div>
     </div>
@@ -510,9 +535,9 @@
                         Section // 02 Educational_Publishing
                     </span>
                 </div>
-                <h1 class="text-7xl md:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
-                    SCHOOL <br> <span class="text-orange">SUPPLIES</span>
-                </h1>
+               <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8] break-words">
+    SCHOOL <br> <span class="text-orange">SUPPLIES</span>
+</h1>
                 <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
                     Modernizing learning environments with ergonomic furniture and curriculum resources.
                 </p>
@@ -774,19 +799,39 @@
                 document.body.style.overflow = "auto";
             }
         }
+function showPage(pageId) {
+    // 1. Force the body back to scrollable (Fixes mobile "stuck" bug)
+    document.body.style.overflow = "auto";
+    
+    // 2. Hide all pages using the correct ID prefix
+    const pages = ['home', 'labs', 'schools', 'logistics'];
+    pages.forEach(id => {
+        const page = document.getElementById('page-' + id);
+        if (page) page.classList.add('hidden');
+    });
 
-        function showPage(pageId) {
-            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-' + pageId).classList.remove('hidden');
-            updateNav();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(handleReveal, 100);
-        }
+    // 3. Show the new page
+    const activePage = document.getElementById('page-' + pageId);
+    if (activePage) {
+        activePage.classList.remove('hidden');
+    }
 
-        window.onload = () => {
-            updateNav();
-            handleReveal();
-        };
+    // 4. THE MOBILE FIX: Double-Tap Scroll
+    // First, snap to top immediately
+    window.scrollTo(0, 0);
+    
+    // Second, use a tiny timeout to catch the browser after it renders the new page height
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant'
+        });
+        
+        // Re-trigger animations and nav updates
+        if (typeof updateNav === 'function') updateNav();
+        if (typeof handleReveal === 'function') handleReveal();
+    }, 50);
+}
 
        let lastScrollTop = 0;
     const navbar = document.getElementById("navbar");
@@ -853,20 +898,7 @@
         });
     }
 
-    // Page Switching Logic
-    function showPage(pageId) {
-        document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
-        document.getElementById('page-' + pageId).classList.remove('hidden');
-        
-        // Reset scroll and update nav state immediately
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Timeout ensures the 'hidden' classes are processed before measuring scroll
-        setTimeout(() => {
-            updateNav();
-            handleReveal();
-        }, 50);
-    }
+   
 
     function toggleMobileMenu() {
     const menu = document.getElementById("mobile-menu");
@@ -947,6 +979,14 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 observer.observe(video);
+
+       function setDocHeight() {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+}
+
+window.addEventListener('resize', setDocHeight);
+window.addEventListener('orientationchange', setDocHeight);
+setDocHeight();
     </script>
 </body>
 </html>
