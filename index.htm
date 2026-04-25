@@ -56,7 +56,7 @@
         }
 
         .hero-video-bg {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&q=80&w=1920');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://lh3.googleusercontent.com/u/0/d/1nguG2o9SkYFL_xhbD4Mlo0dWwPXq3T5L');
             background-size: cover;
             background-position: center;
         }
@@ -128,6 +128,18 @@
             display: inline-block;
             margin: 4px;
         }
+
+               @keyframes scrollBounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+.scroll-indicator {
+    animation: scrollBounce 2s infinite;
+}
+
+              
     </style>
 </head>
 <body class="custom-scrollbar">
@@ -144,7 +156,7 @@
             <a href="#" onclick="showPage('labs')" class="nav-link text-white hover:text-primary transition">Labs</a>
             <a href="#" onclick="showPage('schools')" class="nav-link text-white hover:text-primary transition">Schools</a>
             <a href="#" onclick="showPage('logistics')" class="nav-link text-white hover:text-primary transition">Kenya-Wide</a>
-            <button onclick="window.location.href='https://wa.me/254700000000'" class="bg-primary hover:bg-white hover:text-black text-black px-7 py-2.5 rounded-full font-extrabold transition-all hover:scale-105">WHATSAPP US</button>
+            <button onclick="window.location.href='https://wa.me/254707671805'" class="bg-primary hover:bg-white hover:text-black text-black px-7 py-2.5 rounded-full font-extrabold transition-all hover:scale-105">WHATSAPP US</button>
         </div>
 
         <button id="mobile-toggle" onclick="toggleMobileMenu()" class="md:hidden text-white text-3xl focus:outline-none">
@@ -154,17 +166,69 @@
 </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="bg-dark translate-x-full transition-transform duration-500 flex flex-col items-center justify-center space-y-10 text-3xl font-black">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-white text-4xl"><i class="fas fa-times"></i></button>
-        <div class="w-40 h-12 bg-zinc-800 rounded mb-4 overflow-hidden border border-primary/30">
-             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover" alt="Logo">
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-2xl border-l border-white/10 translate-x-full transition-transform duration-500 ease-in-out overflow-y-auto">
+    
+    <div class="min-h-full flex flex-col px-8">
+        
+        <div class="flex justify-between items-center py-8 border-b border-white/10">
+            <div class="w-32 opacity-90 brightness-110">
+                <img src="https://lh3.googleusercontent.com/u/0/d/1P9lG4Jg1jzWWxaN0gR-PL4wNPwfNO1sg" alt="Pillar Logo" class="w-full h-auto object-contain">
+            </div>
+            <button onclick="toggleMobileMenu()" class="text-white hover:text-primary transition-all group">
+                <div class="flex items-center gap-3">
+                    <span class="text-[10px] font-black tracking-[0.3em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">Close</span>
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary">
+                        <i class="fas fa-times text-lg"></i>
+                    </div>
+                </div>
+            </button>
         </div>
-        <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="text-white hover:text-primary">Home</a>
-        <a href="#" onclick="showPage('labs'); toggleMobileMenu()" class="text-white hover:text-primary">Lab Installations</a>
-        <a href="#" onclick="showPage('schools'); toggleMobileMenu()" class="text-white hover:text-primary">School Equipment</a>
-        <a href="#" onclick="showPage('logistics'); toggleMobileMenu()" class="text-white hover:text-primary">Transport</a>
-        <a href="https://wa.me/254700000000" class="text-primary underline mt-6">Get Quote</a>
+
+        <nav class="flex-grow flex flex-col justify-center space-y-6 py-12">
+           <a href="#" onclick="showPage('home'); history.back()" class="group flex items-center justify-between border-b border-white/5 pb-6">
+                <div class="flex flex-col">
+                    <span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase mb-1 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">01</span>
+                    <span class="text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">Home</span>
+                </div>
+                <i class="fas fa-arrow-right text-zinc-700 group-hover:text-primary group-hover:translate-x-2 transition-all"></i>
+            </a>
+
+            <a href="#" onclick="showPage('labs'); toggleMobileMenu()" class="group flex items-center justify-between border-b border-white/5 pb-6">
+                <div class="flex flex-col">
+                    <span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase mb-1 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">02</span>
+                    <span class="text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">Lab Installations</span>
+                </div>
+                <i class="fas fa-arrow-right text-zinc-700 group-hover:text-primary group-hover:translate-x-2 transition-all"></i>
+            </a>
+
+            <a href="#" onclick="showPage('schools'); toggleMobileMenu()" class="group flex items-center justify-between border-b border-white/5 pb-6">
+                <div class="flex flex-col">
+                    <span class="text-[10px] font-bold text-orange tracking-[0.2em] uppercase mb-1 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">03</span>
+                    <span class="text-3xl font-black text-white group-hover:text-orange transition-all tracking-tighter uppercase">School Equipment</span>
+                </div>
+                <i class="fas fa-arrow-right text-zinc-700 group-hover:text-orange group-hover:translate-x-2 transition-all"></i>
+            </a>
+
+            <a href="#" onclick="showPage('logistics'); toggleMobileMenu()" class="group flex items-center justify-between border-b border-white/5 pb-6">
+                <div class="flex flex-col">
+                    <span class="text-[10px] font-bold text-primary tracking-[0.2em] uppercase mb-1 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">04</span>
+                    <span class="text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">Logistics</span>
+                </div>
+                <i class="fas fa-arrow-right text-zinc-700 group-hover:text-primary group-hover:translate-x-2 transition-all"></i>
+            </a>
+        </nav>
+        
+        <div class="pb-20 pt-6">
+            <p class="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] mb-6 text-center">Inquiry Hub</p>
+            <a href="https://wa.me/254707671805" class="flex items-center justify-center gap-4 bg-primary text-black py-5 rounded-xl font-black text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(57,255,20,0.2)]">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                WhatsApp Agent
+            </a>
+        </div>
     </div>
+</div>
+        
+       
 
     <main id="main-content">
         
@@ -189,7 +253,7 @@
             <div id="about" class="py-32 container mx-auto px-6 reveal">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bb1178329?auto=format&fit=crop&q=80&w=800" class="rounded-3xl shadow-2xl relative z-10" alt="Lab Work">
+                        <img src="https://lh3.googleusercontent.com/u/0/d/1XStLDu1w8tJ8IlPqeT90oy_6oUzoQ-Lz" class="rounded-3xl shadow-2xl relative z-10" alt="Lab Work">
                         <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse"></div>
                     </div>
                     <div>
@@ -267,54 +331,112 @@
 
         <!-- LABS PAGE (Updated with Science Equipment Info) -->
        <section id="page-labs" class="page-content hidden">
-            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Lab Header">
-                    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent via-75% to-white"></div>
+          <div class="relative min-h-screen flex flex-col justify-between pt-40 pb-12 px-6 bg-white overflow-hidden">
+    <div class="container mx-auto">
+        <div class="flex items-start gap-8">
+            <div class="w-4 h-48 bg-primary mt-2"></div> <div class="max-w-5xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[11px] tracking-[0.3em] uppercase rounded-sm border border-zinc-200">
+                        Section // Lab Equipment
+                    </span>
                 </div>
-                
-                <div class="container mx-auto text-center relative z-10 reveal">
-                    <h1 class="text-6xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter drop-shadow-2xl">Science <span class="text-primary">Equipment</span></h1>
-                    <p class="text-gray-100 text-xl max-w-3xl mx-auto font-medium drop-shadow-lg">Precision instruments and lab installations for Kenyan institutions.</p>
-                </div>
+                <h1 class="text-7xl md:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
+                    SCIENCE <br> <span class="text-primary">EQUIPMENT</span>
+                </h1>
+                <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
+                    Precision instruments and laboratory installations for Kenyan research standards.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto flex justify-center md:justify-start">
+        <div class="brutalist-scroll flex flex-col items-center gap-2 cursor-pointer group" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">
+            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-primary transition-colors">Scroll to Catalog</span>
+            <div class="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center text-primary text-xl">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+          <div class="mb-32 reveal">
+    <div class="text-center mb-16">
+        <h2 class="text-4xl font-black mb-4">Lab <span class="text-primary">Transformation</span></h2>
+        <p class="text-gray-500">From empty shells to fully functional, ISO-certified research environments.</p>
+    </div>
+    
+    <div class="max-w-5xl mx-auto space-y-8">
+        <div class="relative group overflow-hidden rounded-3xl shadow-lg border border-zinc-200">
+            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE INSTALLATION</span>
+            <img src="https://lh3.googleusercontent.com/u/0/d/1r_kUIiw6pD-SX_r5jG9QCnbrB-7iAXD9" class="w-full h-[350px] object-cover grayscale brightness-75" alt="Unfinished Lab Space">
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
+                <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER: MODERN WORKSTATIONS</span>
+                <img src="https://lh3.googleusercontent.com/u/0/d/1Pygw3Ku-3cfQyb9u6VTNYVgRTnVKQATs" class="w-full h-[400px] object-cover" alt="Completed Chemistry Lab">
             </div>
 
-            <div class="container mx-auto px-6 py-12 bg-white">
-                </div>
+            <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
+                <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER: MORDERN WORKSTATIONS</span>
+                <img src="https://lh3.googleusercontent.com/u/0/d/1aKEkw-DZY9Rz2CWb0KtH8kW6bnky-Z_8" class="w-full h-[400px] object-cover" alt="Advanced Lab Setup">
+            </div>
+        </div>
+    </div>
+</div>
 
-            <div class="container mx-auto px-6 py-24">
-                <div class="mb-32 reveal">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-black mb-4">Lab <span class="text-primary">Transformation</span></h2>
-                        <p class="text-gray-500">From empty shells to fully functional, ISO-certified research environments.</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        <div class="relative group overflow-hidden rounded-3xl shadow-lg border border-zinc-200">
-                            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE INSTALLATION</span>
-                            <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=800" class="w-full h-[400px] object-cover grayscale brightness-75" alt="Unfinished Lab Space">
-                        </div>
-                        <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
-                            <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER INSTALLATION</span>
-                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800" class="w-full h-[400px] object-cover" alt="Completed Lab Space">
-                        </div>
-                    </div>
-                </div>
+            <div class="mb-32 bg-dark py-20 px-6 reveal">
+    <div class="container mx-auto">
+        <div class="mb-12 text-left border-l-4 border-orange pl-6">
+            <h2 class="text-4xl font-black text-white tracking-tighter uppercase">
+                Precision <span class="text-orange">Gas Tap</span> Validation
+            </h2>
+            <p class="text-zinc-500 font-bold text-sm mt-2 tracking-widest uppercase">
+                Live Laboratory Safety & Pressure Testing
+            </p>
+        </div>
 
-                <div class="mb-32 bg-zinc-900 rounded-[3rem] p-12 text-center reveal">
-                    <h2 class="text-3xl font-black text-white mb-8">Rigorous <span class="text-orange">Equipment Testing</span></h2>
-                    <div class="max-w-4xl mx-auto aspect-video bg-black rounded-2xl overflow-hidden relative group border border-white/10">
-                        <div class="absolute inset-0 flex items-center justify-center z-10">
-                            <button class="w-20 h-20 bg-primary rounded-full flex items-center justify-center text-black text-2xl hover:scale-110 transition-transform">
-                                <i class="fas fa-play ml-1"></i>
-                            </button>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-50" alt="Video testing preview">
-                        <div class="absolute bottom-6 left-6 text-left">
-                            <p class="text-white font-bold">Watch: Gas & Safety System Validation</p>
-                            <p class="text-primary text-sm uppercase font-black">On-site Performance Test</p>
-                        </div>
-                    </div>
+        <div class="max-w-6xl mx-auto aspect-video bg-black relative group border border-white/5 overflow-hidden">
+            
+            <video 
+                id="testing-video"
+                class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-1000"
+                muted 
+                loop 
+                playsinline
+                preload="auto">
+                <source src="https://www.dropbox.com/scl/fi/41stvm26vwy46iwfux5b9/71ae7444-9fa3-4418-91ab-26d25f559d43.MOV?rlkey=4vjvdfs5at4sw0lpi3wa7z8s1&st=bcxcyr2x&raw=1" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="absolute top-6 right-6 flex items-center gap-2">
+                <div class="w-2 h-2 bg-red-600 rounded-full animate-ping"></div>
+                <span class="text-[10px] font-mono text-white/50 tracking-tighter uppercase">REC // SYSTEM_CHECK</span>
+            </div>
+
+            <div class="absolute bottom-10 left-10 text-left pointer-events-none">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="px-4 py-1 bg-primary text-black text-[10px] font-black uppercase">Standard: ISO LAB 2026</span>
+                    <span class="text-white/40 font-mono text-[10px]">FLOW RATE: OPTIMAL</span>
                 </div>
+                <p class="text-white text-2xl font-black tracking-tight uppercase leading-none">Gas Outlet Verification</p>
+                <div class="h-1 w-20 bg-orange mt-2"></div>
+            </div>
+
+            <div class="absolute inset-0 pointer-events-none border-y border-white/5">
+                <div class="w-full h-[1px] bg-white/10 absolute top-0 animate-[scan_4s_linear_infinite]"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+</style>
 
                 <div class="grid lg:grid-cols-2 gap-16 items-start reveal">
                     <div class="space-y-12">
@@ -334,30 +456,79 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-dark p-12 rounded-[3rem] text-white">
-                        <h3 class="text-3xl font-black mb-8 text-primary uppercase">Inventory</h3>
-                        <div class="flex flex-wrap -m-1">
-                            <span class="equipment-tag">Microscopes</span><span class="equipment-tag">Beakers</span>
-                            <span class="equipment-tag">Balances</span><span class="equipment-tag">Experiment Kits</span>
-                            <span class="equipment-tag">Lab Glassware</span><span class="equipment-tag">Safety Gear</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                   <div class="bg-dark p-12 text-white border border-white/5 relative overflow-hidden">
+    <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+        <i class="fas fa-boxes-stacked text-8xl"></i>
+    </div>
+
+    <h3 class="text-3xl font-black mb-12 text-primary uppercase tracking-tighter flex items-center gap-4">
+        <span class="w-8 h-[2px] bg-primary"></span>
+        Inventory
+    </h3>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
+            <i class="fas fa-microscope text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Microscopes</p>
+        </div>
+
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
+            <i class="fas fa-flask text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Lab Glassware</p>
+        </div>
+
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
+            <i class="fas fa-scale-balanced text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Balances</p>
+        </div>
+
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
+            <i class="fas fa-vial-circle-check text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Experiment Kits</p>
+        </div>
+
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
+            <i class="fas fa-faucet text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Gas Taps</p>
+        </div>
+
+        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
+            <i class="fas fa-shield-halved text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
+            <p class="text-xs font-black uppercase tracking-widest">Safety Gear</p>
+        </div>
+    </div>
+</div>
         </section>
 
         <section id="page-schools" class="page-content hidden">
-            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
-                <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="School Header">
-                    <div class="absolute inset-0 bg-gradient-to-b from-orange-600/40 via-transparent via-70% to-white"></div>
+           <div class="relative min-h-screen flex flex-col justify-between pt-40 pb-12 px-6 bg-white overflow-hidden">
+    <div class="container mx-auto">
+        <div class="flex items-start gap-8">
+            <div class="w-4 h-48 bg-orange mt-2"></div> <div class="max-w-5xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[11px] tracking-[0.3em] uppercase rounded-sm border border-zinc-200">
+                        Section // 02 Educational_Publishing
+                    </span>
                 </div>
-                
-                <div class="container mx-auto text-center relative z-10 reveal">
-                    <h1 class="text-6xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl">Educational <span class="text-orange-500">Publishing</span></h1>
-                    <p class="max-w-2xl mx-auto font-bold text-white uppercase tracking-wider drop-shadow-lg">Modernizing Learning Environments</p>
-                </div>
+                <h1 class="text-7xl md:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
+                    SCHOOL <br> <span class="text-orange">SUPPLIES</span>
+                </h1>
+                <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
+                    Modernizing learning environments with ergonomic furniture and curriculum resources.
+                </p>
             </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto flex justify-center md:justify-start">
+        <div class="brutalist-scroll flex flex-col items-center gap-2 cursor-pointer group" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">
+            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-orange transition-colors">Scroll to Catalog</span>
+            <div class="w-12 h-12 rounded-full border-2 border-orange flex items-center justify-center text-orange text-xl">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
             <div class="container mx-auto px-6 py-12 bg-white">
                 </div>
@@ -371,11 +542,11 @@
                     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         <div class="relative group overflow-hidden rounded-3xl shadow-lg">
                             <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE</span>
-                            <img src="https://images.unsplash.com/photo-1544652478-6653e09f18a2?auto=format&fit=crop&q=80&w=800" class="w-full h-[450px] object-cover grayscale brightness-50" alt="Before Furniture">
+                            <img src="https://lh3.googleusercontent.com/u/0/d/1P5d7KgzTfB6AbjldzI3qsD5-3_NUVnup" class="w-full h-[450px] object-cover grayscale brightness-50" alt="Before Furniture">
                         </div>
                         <div class="relative group overflow-hidden rounded-3xl shadow-lg">
                             <span class="absolute top-6 left-6 z-20 bg-orange text-white px-5 py-2 rounded-full text-xs font-black">AFTER</span>
-                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800" class="w-full h-[450px] object-cover" alt="After Furniture">
+                            <img src="https://lh3.googleusercontent.com/u/0/d/1vc5DW8Uuf0UqcyYMSqR2r5_jjFleq__R" class="w-full h-[450px] object-cover" alt="After Furniture">
                         </div>
                     </div>
                 </div>
@@ -426,7 +597,7 @@
         <section id="page-logistics" class="page-content hidden">
            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden">
                 <div class="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover" alt="Logistics Header">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1GQtFQaX1QAvd-oE3RaCRke8NScHLJZPX" class="w-full h-full object-cover" alt="Logistics Header">
                     <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent via-75% to-white"></div>
                 </div>
                 <div class="container mx-auto text-center relative z-10 reveal">
@@ -457,47 +628,49 @@
                     </div>
                 </div>
             </div>
+
+        
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-24 pb-12 border-t border-white/5">
+  <footer class="bg-dark text-white pt-24 pb-12 border-t border-white/5">
     <div class="container mx-auto px-6">
         <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-16 mb-20">
             
             <div class="space-y-8">
                 <div class="w-48 h-14 bg-transparent overflow-hidden flex items-center justify-start">
-                    <img src="YOUR_LOGO_URL_HERE" alt="Pillar Logo" class="w-full h-full object-contain">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1P9lG4Jg1jzWWxaN0gR-PL4wNPwfNO1sg" alt="Pillar Logo" class="w-full h-full object-contain">
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Pillar Educational Publishers is committed to transforming Kenyan education through precision engineering and high-quality learning resources.
                 </p>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
-                        <i class="fab fa-facebook-f text-sm"></i>
+                    <a href="https://www.tiktok.com/@pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-tiktok text-sm group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
-                        <i class="fab fa-instagram text-sm"></i>
+                    <a href="https://www.instagram.com/pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-instagram text-sm group-hover:scale-110 transition-transform"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all">
-                        <i class="fab fa-linkedin-in text-sm"></i>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-linkedin-in text-sm group-hover:scale-110 transition-transform"></i>
                     </a>
                 </div>
             </div>
 
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Navigation</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Navigation</h4>
                 <ul class="space-y-4 text-gray-400 text-sm font-semibold">
-                    <li><a href="#" onclick="showPage('home')" class="hover:text-primary transition-colors">Home Overview</a></li>
-                    <li><a href="#" onclick="showPage('labs')" class="hover:text-primary transition-colors">Science Installations</a></li>
-                    <li><a href="#" onclick="showPage('schools')" class="hover:text-primary transition-colors">School Catalog</a></li>
-                    <li><a href="#" onclick="showPage('logistics')" class="hover:text-primary transition-colors">Logistics & Supply</a></li>
+                    <li><a href="#" onclick="showPage('home')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Home Overview</a></li>
+                    <li><a href="#" onclick="showPage('labs')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Science Installations</a></li>
+                    <li><a href="#" onclick="showPage('schools')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> School Catalog</a></li>
+                    <li><a href="#" onclick="showPage('logistics')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Logistics & Supply</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Our Solutions</h4>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-orange decoration-2 underline-offset-8">Our Solutions</h4>
                 <ul class="space-y-4 text-gray-400 text-sm font-semibold">
                     <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
                         <span class="w-1 h-1 bg-orange rounded-full"></span> Lab Design & Equipment
@@ -515,34 +688,43 @@
             </div>
 
             <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8">Stay Updated</h4>
-                <p class="text-gray-400 text-xs mb-6 font-medium">Subscribe to receive updates on new science gear and educational materials.</p>
-                <form class="relative group">
-                    <input type="email" placeholder="Your email address" 
-                           class="w-full bg-zinc-900 border border-white/10 rounded-xl py-4 px-6 text-sm text-white focus:outline-none focus:border-primary transition-all">
-                    <button type="submit" class="absolute right-2 top-2 bottom-2 bg-primary text-black px-4 rounded-lg font-black text-xs hover:bg-white transition-all">
-                        JOIN
-                    </button>
-                </form>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Connect With Us</h4>
+                <div class="space-y-6">
+                    <div class="group">
+                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Official Email</p>
+                        <a href="mailto:pillareducationpublishersk@gmail.com" class="text-white text-sm font-bold hover:text-primary transition-all flex items-center gap-2">
+                            <i class="fas fa-envelope text-primary"></i> pillareducationpublishersk@gmail.com
+                        </a>
+                    </div>
+                    <div class="group">
+                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Contact Us At</p>
+                        <div class="flex flex-col gap-3">
+                            <a href="tel:+254721747998" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
+                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 721 747 998
+                            </a>
+                            <a href="tel:+254707671805" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
+                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 707 671 805
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
         <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-gray-500 text-xs font-bold uppercase tracking-widest">
-                &copy; 2026 PILLAR EDUCATIONAL PUBLISHERS. ALL RIGHTS RESERVED.
+            <div class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em]">
+                © 2026 PILLAR EDUCATIONAL PUBLISHERS. ALL RIGHTS RESERVED.
             </div>
-            <div class="flex gap-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
+            <div class="flex gap-8 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
                 <a href="#" class="hover:text-white transition">Privacy Policy</a>
                 <a href="#" class="hover:text-white transition">Terms of Service</a>
-                <a href="#" class="hover:text-white transition">Admin Portal</a>
             </div>
         </div>
     </div>
 </footer>
 
     <!-- WhatsApp Floating -->
-    <a href="https://wa.me/254700000000" class="whatsapp-float">
+    <a href="https://wa.me/254707671805" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -687,21 +869,84 @@
     }
 
     function toggleMobileMenu() {
-        const menu = document.getElementById("mobile-menu");
-        menu.classList.toggle("translate-x-full");
-        document.body.style.overflow = menu.classList.contains("translate-x-full") ? "auto" : "hidden";
+    const menu = document.getElementById("mobile-menu");
+    const isOpen = !menu.classList.contains("translate-x-full");
+
+    if (!isOpen) {
+        // OPENING THE MENU
+        menu.classList.remove("translate-x-full");
+        document.body.style.overflow = "hidden";
+        
+        // Push a dummy state so the 'Back' button has something to go back to
+        history.pushState({ menuOpen: true }, ""); 
+    } else {
+        // CLOSING THE MENU
+        menu.classList.add("translate-x-full");
+        document.body.style.overflow = "auto";
+        
+        // If the user closed it manually (not via back button), clear the history state
+        if (history.state && history.state.menuOpen) {
+            history.back();
+        }
     }
+}
 
-    // Initialize everything
-    window.onscroll = () => {
-        updateNav();
-        handleReveal();
-    };
+// Handle the Browser "Back" button
+window.addEventListener('popstate', function(event) {
+    const menu = document.getElementById("mobile-menu");
+    
+    // If the menu is visible and the user clicks back, close it
+    if (!menu.classList.contains("translate-x-full")) {
+        menu.classList.add("translate-x-full");
+        document.body.style.overflow = "auto";
+    }
+});
 
-    window.onload = () => {
-        updateNav();
-        handleReveal();
-    };
+       function playVideo() {
+    const video = document.getElementById('testing-video');
+    const overlay = document.getElementById('video-overlay');
+    const btn = document.getElementById('play-btn');
+
+    // This checks if the video is actually loaded before trying to play
+    if (video.readyState >= 2) { 
+        if (video.paused) {
+            video.play();
+            video.muted = false; 
+            btn.innerHTML = '<i class="fas fa-pause"></i>';
+            overlay.classList.add('opacity-0');
+        } else {
+            video.pause();
+            btn.innerHTML = '<i class="fas fa-play ml-1"></i>';
+            overlay.classList.remove('opacity-0');
+        }
+    } else {
+        console.log("Video is still loading...");
+        // Fallback: try to play anyway
+        video.play();
+    }
+}
+
+       // Intersection Observer for Autoplay
+const video = document.getElementById('testing-video');
+
+const options = {
+    root: null, // use the viewport
+    threshold: 0.5 // trigger when 50% of the video is visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            video.play().catch(error => {
+                console.log("Autoplay blocked or failed:", error);
+            });
+        } else {
+            video.pause();
+        }
+    });
+}, options);
+
+observer.observe(video);
     </script>
 </body>
 </html>
