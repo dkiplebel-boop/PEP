@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Pillar Educational Publishers | Lab & School Supplies Kenya</title>
+   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -253,22 +256,47 @@ img, video, canvas {
     <main id="main-content">
         
         <!-- HOME PAGE -->
-        <section id="page-home" class="page-content">
-            <div class="hero-video-bg h-screen flex items-center justify-center text-center px-6">
-                <div class="max-w-5xl reveal active stagger-1">
-                    
-                    <h1 class="text-5xl md:text-5xl font-black text-white mb-8 leading-tight">
-                        Precision <span class="text-primary">Labs</span> , Learning Materials & More.
-                    </h1>
-                    <p class="text-lg md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-                        A dynamic, customer-focused partner specializing 
-                    </p>
-                    <div class="flex flex-wrap gap-6 justify-center">
-                        <button onclick="showPage('labs')" class="bg-primary text-black font-black px-10 py-5 rounded-xl hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all">VIEW OUR LABS</button>
-                        <button onclick="showPage('schools')" class="border-2 border-white text-white font-black px-10 py-5 rounded-xl hover:bg-white hover:text-black transition-all">SCHOOL CATALOG</button>
-                    </div>
-                </div>
+       <section id="page-home" class="page-content">
+    <div class="hero-video-bg h-screen flex items-start justify-center text-center pt-36 md:pt-44 px-6 relative overflow-hidden">
+        
+        <div class="max-w-5xl reveal active stagger-1 z-10">
+            <div class="flex justify-center mb-6">
+                <span class="px-4 py-1.5 bg-white/5 backdrop-blur-md text-primary font-black text-[10px] tracking-[0.3em] uppercase rounded border border-white/10 shadow-lg">
+                    Welcome // Pillar Educational Publishers
+                </span>
             </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter leading-[0.9] max-w-4xl mx-auto">
+                Precision <span class="text-primary">Labs</span> & <br class="hidden sm:inline"> School Supplies.
+            </h1>
+
+            <p class="text-sm md:text-base font-bold uppercase tracking-[0.2em] text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Empowering institutions with international-grade laboratory setups and high-quality learning materials.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                
+                <button onclick="showPage('labs')" 
+                        class="group w-full sm:w-auto inline-flex items-center justify-between gap-6 bg-primary text-black pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(57,255,20,0.2)] transition-all duration-300 cursor-pointer">
+                    <span>View Our Labs</span>
+                    <div class="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </div>
+                </button>
+
+                <button onclick="showPage('schools')" 
+                        class="group w-full sm:w-auto inline-flex items-center justify-between gap-6 border border-white/20 text-white pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer">
+                    <span>School Catalog</span>
+                    <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                        <i class="fas fa-file-pdf text-xs"></i>
+                    </div>
+                </button>
+
+            </div>
+        </div>
+        
+    </div>
+
 
             <div id="about" class="py-32 container mx-auto px-6 reveal">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
@@ -301,558 +329,751 @@ img, video, canvas {
                 </div>
             </div>
 
-            <!-- CORE VALUES SECTION -->
-            <div class="bg-zinc-50 py-32 border-y border-zinc-200">
-                <div class="container mx-auto px-6 reveal">
-                    <div class="text-center mb-20">
-                        <h6 class="text-orange font-black tracking-widest mb-4 uppercase">The Pillar Way</h6>
-                        <h2 class="text-5xl font-black">Our Core <span class="text-primary">Values</span></h2>
+          <div class="pb-32 bg-white reveal">
+    <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            
+            <div class="lg:pr-10 order-2 lg:order-1">
+                <div class="w-12 h-1 bg-orange mb-8"></div>
+                <h2 class="text-5xl font-black uppercase tracking-tighter mb-8 leading-tight">
+                    Premium <span class="text-primary">Supplies</span> for Every Institution
+                </h2>
+                <p class="text-zinc-500 text-lg mb-10 leading-relaxed font-medium">
+                    From the most remote schools in the Rift Valley to advanced research centers in Nairobi, we ensure that every student has access to the tools they need. Our supply chain is optimized for the Kenyan landscape, guaranteeing that fragile lab equipment arrives intact and ready for use.
+                </p>
+                
+                <div class="space-y-6 mb-10">
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <p class="font-bold text-zinc-700">ISO-Certified Laboratory Instruments</p>
                     </div>
-                    <div class="grid md:grid-cols-5 gap-8">
-                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-shield-alt text-2xl text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-lg mb-2">Quality</h4>
-                            <p class="text-gray-400 text-xs">Durable and reliable products for long-term use.</p>
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 w-6 h-6 rounded-full bg-orange/20 flex items-center justify-center text-orange text-xs">
+                            <i class="fas fa-check"></i>
                         </div>
-                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
-                            <div class="w-14 h-14 bg-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-handshake text-2xl text-orange"></i>
-                            </div>
-                            <h4 class="font-bold text-lg mb-2">Integrity</h4>
-                            <p class="text-gray-400 text-xs">Operating honestly and transparently in all dealings.</p>
-                        </div>
-                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-smile text-2xl text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-lg mb-2">Customer Satisfaction</h4>
-                            <p class="text-gray-400 text-xs">Prioritizing the unique needs of every institution.</p>
-                        </div>
-                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
-                            <div class="w-14 h-14 bg-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-lightbulb text-2xl text-orange"></i>
-                            </div>
-                            <h4 class="font-bold text-lg mb-2">Innovation</h4>
-                            <p class="text-gray-400 text-xs">Embracing modern educational and practical solutions.</p>
-                        </div>
-                        <div class="text-center p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-shadow">
-                            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-bolt text-2xl text-primary"></i>
-                            </div>
-                            <h4 class="font-bold text-lg mb-2">Efficiency</h4>
-                            <p class="text-gray-400 text-xs">Ensuring timely delivery and dependable service.</p>
-                        </div>
+                        <p class="font-bold text-zinc-700">Nationwide Delivery Logistics</p>
+                    </div>
+                </div>
+
+                <button onclick="showPage('schools')" class="group flex items-center gap-4 bg-zinc-50 border border-zinc-200 px-8 py-4 rounded-2xl hover:bg-dark hover:text-white transition-all">
+                    <span class="font-black text-xs uppercase tracking-widest">Browse Catalog</span>
+                    <i class="fas fa-arrow-right text-orange group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+
+            <div class="relative group order-1 lg:order-2">
+                <div class="absolute -inset-4 bg-orange/10 rounded-[3rem] rotate-3 group-hover:rotate-0 transition-transform duration-700"></div>
+                <div class="relative z-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
+                    <img src="https://www.dropbox.com/scl/fi/24nb7nk8979sdfqxqnldd/PHOTO-2026-04-28-09-45-57.jpg?rlkey=v5xchfp3vc32zihy7vhaqz9kt&st=3nrgz5au&raw=1" 
+                         alt="School Laboratory Supply" 
+                         class="w-full h-[550px] object-cover scale-105 group-hover:scale-100 transition-transform duration-1000">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                </div>
+                <div class="absolute -bottom-10 -right-10 z-20 bg-dark p-8 rounded-3xl shadow-2xl border border-white/5 hidden md:block">
+                    <div class="flex items-center gap-4">
+                        <div class="text-primary text-4xl font-black">47</div>
+                        <div class="text-white text-[10px] font-bold uppercase tracking-widest leading-tight">Counties<br>Covered</div>
                     </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+</div>
+
+            <!-- CORE VALUES SECTION -->
+<div class="bg-zinc-50 py-32 border-y border-zinc-200">
+    <div class="container mx-auto px-6 reveal">
+        <div class="text-center mb-20">
+            <h6 class="text-orange font-black tracking-widest mb-4 uppercase">The Pillar Way</h6>
+            <h2 class="text-5xl font-black uppercase tracking-tighter">Our Core <span class="text-primary">Values</span></h2>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-20">
+            <div class="group p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 hover:border-primary transition-all duration-500">
+                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110"><i class="fas fa-shield-check text-xl text-primary"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-widest mb-2">Quality</h4>
+                <p class="text-gray-400 text-[10px] leading-relaxed uppercase font-bold">Durable and reliable products.</p>
+            </div>
+            <div class="group p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 hover:border-orange transition-all duration-500">
+                <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110"><i class="fas fa-fingerprint text-xl text-orange"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-widest mb-2">Integrity</h4>
+                <p class="text-gray-400 text-[10px] leading-relaxed uppercase font-bold">Honest and transparent dealings.</p>
+            </div>
+            <div class="group p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 hover:border-primary transition-all duration-500">
+                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110"><i class="fas fa-microchip text-xl text-primary"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-widest mb-2">Innovation</h4>
+                <p class="text-gray-400 text-[10px] leading-relaxed uppercase font-bold">Modern educational solutions.</p>
+            </div>
+            <div class="group p-8 bg-white rounded-3xl shadow-sm border border-zinc-100 hover:border-orange transition-all duration-500">
+                <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110"><i class="fas fa-truck-fast text-xl text-orange"></i></div>
+                <h4 class="font-black text-sm uppercase tracking-widest mb-2">Efficiency</h4>
+                <p class="text-gray-400 text-[10px] leading-relaxed uppercase font-bold">Timely delivery and service.</p>
+            </div>
+        </div>
+
+       <div class="text-center mb-12 max-w-2xl mx-auto reveal">
+    <div class="flex justify-center mb-3">
+        <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[10px] tracking-[0.3em] uppercase rounded border border-zinc-200/60">
+            Feedback // Testimonials
+        </span>
+    </div>
+    <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900">
+        Client <span class="text-primary">Reviews</span>
+    </h3>
+</div>
+
+<div class="py-16 bg-white text-center border-t border-zinc-100/80 flex flex-col sm:flex-row items-center justify-center gap-4 reveal">
+    
+    <button onclick="toggleDrawer(true)" 
+            class="group w-full sm:w-auto inline-flex items-center justify-between gap-6 bg-zinc-50 text-black pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider border border-zinc-200 hover:bg-zinc-100 hover:border-zinc-300 transition-all duration-300 cursor-pointer">
+        <span class="tracking-widest">View Reviews</span>
+        <div class="w-8 h-8 rounded-lg bg-zinc-200/50 flex items-center justify-center text-zinc-600 group-hover:text-black transition-colors">
+            <i class="fas fa-comments text-xs group-hover:scale-110 transition-transform"></i>
+        </div>
+    </button>
+
+    <button onclick="showPage('review-form')" 
+            class="group w-full sm:w-auto inline-flex items-center justify-between gap-6 bg-zinc-950 text-white pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider hover:bg-primary hover:text-black transition-all duration-300 shadow-xl shadow-zinc-950/10 hover:shadow-primary/20 cursor-pointer">
+        <span class="tracking-widest">Add a Review</span>
+        <div class="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-black/10 flex items-center justify-center text-primary group-hover:text-black transition-colors">
+            <i class="fas fa-star text-xs group-hover:rotate-12 transition-transform"></i>
+        </div>
+    </button>
+    
+</div>
         </section>
+
+<section id="page-review-form" class="page-content hidden pt-32 pb-20 px-6">
+    <div class="container mx-auto max-w-md reveal">
+        
+        <div class="mb-6">
+            <span class="block px-4 py-1.5 w-fit bg-zinc-100 text-zinc-500 font-black text-[9px] tracking-[0.3em] uppercase rounded border border-zinc-200/60 mb-3">
+                Feedback // Share Experience
+            </span>
+            <h2 class="text-3xl font-black uppercase tracking-tighter text-zinc-900">
+                Submit <span class="text-primary">Review</span>
+            </h2>
+        </div>
+        
+        <div class="bg-zinc-50 p-6 md:p-8 rounded-[2rem] border border-zinc-200/80 space-y-5 shadow-sm">
+            
+            <div>
+                <label class="block text-[9px] font-black uppercase tracking-wider text-zinc-400 mb-1.5 pl-1">Your Name</label>
+                <input type="text" id="review-name" placeholder="E.G., ACADEMY PRINCIPAL" 
+                       class="w-full p-3.5 bg-white rounded-xl border border-zinc-200 focus:border-primary focus:bg-white outline-none font-bold uppercase text-[11px] tracking-wider transition-all placeholder:text-zinc-300">
+            </div>
+
+            <div>
+                <label class="block text-[9px] font-black uppercase tracking-wider text-zinc-400 mb-2 pl-1">Select Rating</label>
+                <div class="flex gap-2.5 text-xl text-zinc-200 bg-white p-3 rounded-xl border border-zinc-200 w-fit" id="star-input">
+                    <i class="fas fa-star cursor-pointer hover:text-primary hover:scale-110 transition-all duration-200" onclick="setFormRating(1)"></i>
+                    <i class="fas fa-star cursor-pointer hover:text-primary hover:scale-110 transition-all duration-200" onclick="setFormRating(2)"></i>
+                    <i class="fas fa-star cursor-pointer hover:text-primary hover:scale-110 transition-all duration-200" onclick="setFormRating(3)"></i>
+                    <i class="fas fa-star cursor-pointer hover:text-primary hover:scale-110 transition-all duration-200" onclick="setFormRating(4)"></i>
+                    <i class="fas fa-star cursor-pointer hover:text-primary hover:scale-110 transition-all duration-200" onclick="setFormRating(5)"></i>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[9px] font-black uppercase tracking-wider text-zinc-400 mb-1.5 pl-1">Your Feedback</label>
+                <textarea id="review-content" placeholder="Share details of your installation or supply delivery experience..." 
+                          class="w-full p-4 bg-white rounded-xl border border-zinc-200 focus:border-primary outline-none h-28 resize-none font-bold text-xs leading-relaxed text-zinc-700 transition-all placeholder:text-zinc-300"></textarea>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <button onclick="submitNewReview()" 
+                        class="group w-full inline-flex items-center justify-between gap-6 bg-zinc-950 text-white pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider hover:bg-primary hover:text-black transition-all duration-300 shadow-lg shadow-zinc-950/10 hover:shadow-primary/20 cursor-pointer">
+                    <span>Submit Review</span>
+                    <div class="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center text-primary group-hover:text-black transition-colors">
+                        <i class="fas fa-paper-plane text-[10px]"></i>
+                    </div>
+                </button>
+                
+                <button onclick="showPage('home')" 
+                        class="w-full text-center py-2.5 text-zinc-400 hover:text-zinc-900 font-black uppercase text-[10px] tracking-[0.2em] transition-colors cursor-pointer block">
+                    Cancel & Return
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
         <!-- LABS PAGE (Updated with Science Equipment Info) -->
-       <section id="page-labs" class="page-content hidden">
-          <div class="relative min-h-screen flex flex-col justify-between pt-40 pb-12 px-6 bg-white overflow-hidden">
-    <div class="container mx-auto">
-        <div class="flex items-start gap-8">
-            <div class="w-4 h-48 bg-primary mt-2"></div> <div class="max-w-5xl">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[11px] tracking-[0.3em] uppercase rounded-sm border border-zinc-200">
-                        Section // Lab Equipment
-                    </span>
+      <section id="page-labs" class="page-content hidden">
+    <div class="relative min-h-[85vh] flex flex-col justify-between pt-36 pb-12 px-6 bg-white overflow-hidden">
+        <div class="container mx-auto">
+            <div class="flex items-start gap-6 md:gap-8">
+                <div class="w-2 md:w-3 h-32 md:h-48 bg-primary mt-4 rounded-sm"></div> 
+                <div class="max-w-6xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[10px] tracking-[0.3em] uppercase rounded border border-zinc-200/60">
+                            Section // Lab Equipment
+                        </span>
+                    </div>
+                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.82]">
+                        SCIENCE <br> <span class="text-primary">EQUIPMENT</span>
+                    </h1>
+                    <p class="mt-8 text-zinc-400 font-bold uppercase tracking-[0.2em] text-xs md:text-sm max-w-xl leading-relaxed">
+                        Precision instruments and laboratory installations for Kenyan research standards.
+                    </p>
                 </div>
-               <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8]">
-    SCIENCE <br> <span class="text-primary">EQUIPMENT</span>
-</h1>
-                <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
-                    Precision instruments and laboratory installations for Kenyan research standards.
-                </p>
             </div>
         </div>
-    </div>
 
-    <div class="container mx-auto flex justify-center md:justify-start">
-        <div class="brutalist-scroll flex flex-col items-center gap-2 cursor-pointer group" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">
-            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-primary transition-colors">Scroll to Catalog</span>
-            <div class="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center text-primary text-xl">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-          <div class="mb-32 reveal">
-    <div class="text-center mb-16">
-        <h2 class="text-4xl font-black mb-4">Lab <span class="text-primary">Transformation</span></h2>
-        <p class="text-gray-500">From empty shells to fully functional, ISO-certified research environments.</p>
-    </div>
-    
-    <div class="max-w-5xl mx-auto space-y-8">
-        <div class="relative group overflow-hidden rounded-3xl shadow-lg border border-zinc-200">
-            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE INSTALLATION</span>
-            <img src="https://lh3.googleusercontent.com/u/0/d/1r_kUIiw6pD-SX_r5jG9QCnbrB-7iAXD9" class="w-full h-[350px] object-cover grayscale brightness-75" alt="Unfinished Lab Space">
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
-                <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER: MODERN WORKSTATIONS</span>
-                <img src="https://lh3.googleusercontent.com/u/0/d/1Pygw3Ku-3cfQyb9u6VTNYVgRTnVKQATs" class="w-full h-[400px] object-cover" alt="Completed Chemistry Lab">
-            </div>
-
-            <div class="relative group overflow-hidden rounded-3xl shadow-lg border-4 border-primary">
-                <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-xs font-black">AFTER: MORDERN WORKSTATIONS</span>
-                <img src="https://lh3.googleusercontent.com/u/0/d/1aKEkw-DZY9Rz2CWb0KtH8kW6bnky-Z_8" class="w-full h-[400px] object-cover" alt="Advanced Lab Setup">
-            </div>
-        </div>
-    </div>
-</div>
-
-          <div class="mt-20 py-16 bg-white rounded-[3rem] border border-zinc-200 overflow-hidden reveal">
-    <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6">
-                <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-black text-[10px] tracking-[0.3em] uppercase rounded-full border border-primary/20">
-                    High Capacity // 01
-                </div>
-                <h2 class="text-5xl font-black text-black leading-tight uppercase tracking-tighter">
-                    Twin <span class="text-primary">Laboratory</span> Workstations
-                </h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Designed for high-density learning environments, our Twin Table setup provides a centralized hub for up to 20 students. Featuring industrial-grade epoxy surfaces for maximum chemical resistance.
-                </p>
-                <ul class="space-y-3 text-sm font-bold text-zinc-500">
-                    <li><i class="fas fa-check text-primary mr-2"></i> 7 Integrated Sinks & Drainage</li>
-                    <li><i class="fas fa-check text-primary mr-2"></i> 5 Professional Two-Way Gas Taps</li>
-                    <li><i class="fas fa-check text-primary mr-2"></i> External Gas Cage & Cylinder Included</li>
-                </ul>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-xl border border-zinc-100 overflow-hidden">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-dark text-white uppercase text-[10px] tracking-widest">
-                        <tr>
-                            <th class="px-6 py-4">Item Description</th>
-                            <th class="px-6 py-4 text-right">Amount (Ksh)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-100 font-bold text-zinc-700">
-                        <tr>
-                            <td class="px-6 py-4">3.5m x 1.2m Epoxy Coated Table (Twin Configuration)</td>
-                            <td class="px-6 py-4 text-right text-zinc-400">360,000.00</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4">20 Heavy-Duty Laboratory Stools</td>
-                            <td class="px-6 py-4 text-right text-zinc-400">Included</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="bg-primary/5 border-t-2 border-primary/20">
-                        <tr>
-                            <td class="px-6 py-4 font-black uppercase text-primary">Total Installation</td>
-                            <td class="px-6 py-4 text-right font-black text-xl text-black">360,000.00</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="mt-12 py-16 bg-zinc-50 rounded-[3rem] border border-zinc-200 overflow-hidden reveal">
-    <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="bg-white rounded-2xl shadow-xl border border-zinc-100 overflow-hidden order-2 lg:order-1">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-dark text-white uppercase text-[10px] tracking-widest">
-                        <tr>
-                            <th class="px-6 py-4">Item Description</th>
-                            <th class="px-6 py-4 text-right">Amount (Ksh)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-100 font-bold text-zinc-700">
-                        <tr>
-                            <td class="px-6 py-4">3.5m x 0.6m Portable Epoxy Coated Table</td>
-                            <td class="px-6 py-4 text-right text-zinc-400">180,000.00</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4">10 Heavy-Duty Laboratory Stools</td>
-                            <td class="px-6 py-4 text-right text-zinc-400">Included</td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="bg-primary/5 border-t-2 border-primary/20">
-                        <tr>
-                            <td class="px-6 py-4 font-black uppercase text-primary">Total Installation</td>
-                            <td class="px-6 py-4 text-right font-black text-xl text-black">180,000.00</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <div class="space-y-6 order-1 lg:order-2">
-                <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-black text-[10px] tracking-[0.3em] uppercase rounded-full border border-primary/20">
-                    Flexible Space // 02
-                </div>
-                <h2 class="text-5xl font-black text-black leading-tight uppercase tracking-tighter">
-                    Portable <span class="text-primary">Flex</span> Units
-                </h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Optimized for versatility, our portable units allow for easy reconfiguration of your lab space. Includes full delivery across all 47 counties.
-                </p>
-                <div class="p-4 bg-white rounded-xl border border-zinc-200 text-xs font-bold text-zinc-400">
-                    <p class="uppercase tracking-widest mb-2 text-[10px] text-primary">Delivery Note:</p>
-                    Rates are inclusive of all logistics and delivery charges.
+        <div class="container mx-auto flex justify-center md:justify-start mt-12">
+            <div class="brutalist-scroll flex flex-col items-center gap-2 cursor-pointer group" onclick="document.getElementById('transformation-showcase').scrollIntoView({behavior: 'smooth'})">
+                <span class="text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover:text-primary transition-colors">Scroll to Catalog</span>
+                <div class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center text-primary text-sm group-hover:bg-primary/5 transition-colors">
+                    <i class="fas fa-chevron-down animate-bounce mt-0.5"></i>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-           <div class="mb-32 bg-dark py-20 px-6 reveal">
-    <div class="container mx-auto">
-        <div class="mb-12 text-left border-l-4 border-orange pl-6">
-            <h2 class="text-4xl font-black text-white tracking-tighter uppercase">
-                Precision <span class="text-orange">Gas Tap</span> Validation
-            </h2>
-            <p class="text-zinc-500 font-bold text-sm mt-2 tracking-widest uppercase">
-                Live Laboratory Safety & Pressure Testing
-            </p>
+    <div id="transformation-showcase" class="container mx-auto px-6 mb-32 reveal">
+        <div class="text-center mb-16 max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black mb-3 uppercase tracking-tighter">Lab <span class="text-primary">Transformation</span></h2>
+            <p class="text-zinc-500 font-medium text-sm md:text-base">From empty shells to fully functional, ISO-certified research environments.</p>
         </div>
-
-        <div class="max-w-6xl mx-auto aspect-[21/9] max-h-[450px] bg-black relative group border border-white/5 overflow-hidden shadow-2xl">
-            
-            <video 
-                id="testing-video"
-                class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-1000"
-                muted 
-                loop 
-                playsinline
-                preload="auto">
-                <source src="https://www.dropbox.com/scl/fi/41stvm26vwy46iwfux5b9/71ae7444-9fa3-4418-91ab-26d25f559d43.MOV?rlkey=4vjvdfs5at4sw0lpi3wa7z8s1&st=bcxcyr2x&raw=1" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="absolute top-6 right-6 flex items-center gap-2">
-                <div class="w-2 h-2 bg-red-600 rounded-full animate-ping"></div>
-                <span class="text-[10px] font-mono text-white/50 tracking-tighter uppercase">REC // SYSTEM_CHECK</span>
+        
+        <div class="max-w-5xl mx-auto space-y-6">
+            <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border border-zinc-200">
+                <span class="absolute top-6 left-6 z-20 bg-zinc-950 text-white px-5 py-2 rounded-full text-[10px] font-black tracking-wider shadow-md">BEFORE INSTALLATION</span>
+                <div class="absolute inset-0 bg-zinc-950/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                <img src="https://lh3.googleusercontent.com/u/0/d/1r_kUIiw6pD-SX_r5jG9QCnbrB-7iAXD9" class="w-full h-[350px] object-cover grayscale brightness-70 contrast-125 transition-all duration-700 group-hover:scale-102" alt="Unfinished Lab Space">
             </div>
 
-            <div class="absolute inset-0 pointer-events-none border-y border-white/5">
-                <div class="w-full h-[1px] bg-white/10 absolute top-0 animate-[scan_4s_linear_infinite]"></div>
-            </div>
-        </div>
-
-        <div class="max-w-6xl mx-auto mt-8 flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-white/10 pt-8">
-            <div class="text-left">
-                <p class="text-white text-2xl font-black tracking-tight uppercase leading-none mb-4">Gas Outlet Verification</p>
-                <div class="flex items-center gap-4">
-                    <span class="px-4 py-1 bg-primary text-black text-[10px] font-black uppercase">Standard: ISO LAB 2026</span>
-                    <span class="text-white/40 font-mono text-[10px] uppercase tracking-widest">Flow Rate: Optimal</span>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border-2 border-primary">
+                    <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-[10px] font-black tracking-wider shadow-md">AFTER: MODERN WORKSTATIONS</span>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1Pygw3Ku-3cfQyb9u6VTNYVgRTnVKQATs" class="w-full h-[380px] object-cover transition-transform duration-700 group-hover:scale-102" alt="Completed Chemistry Lab">
                 </div>
-            </div>
-            <div class="hidden md:block">
-                <div class="h-1 w-20 bg-orange ml-auto"></div>
-                <p class="text-[10px] font-mono text-zinc-600 uppercase mt-2 tracking-[0.2em]">Pillar_Safety_Protocol_v2.1</p>
+
+                <div class="relative group overflow-hidden rounded-[2rem] shadow-xl border-2 border-primary">
+                    <span class="absolute top-6 left-6 z-20 bg-primary text-black px-5 py-2 rounded-full text-[10px] font-black tracking-wider shadow-md">AFTER: ADVANCED SETUP</span>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1aKEkw-DZY9Rz2CWb0KtH8kW6bnky-Z_8" class="w-full h-[380px] object-cover transition-transform duration-700 group-hover:scale-102" alt="Advanced Lab Setup">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<style>
-@keyframes scan {
-    0% { top: 0%; }
-    100% { top: 100%; }
-}
-</style>
+    <div class="container mx-auto px-6 py-8 text-center reveal">
+        <button onclick="showPage('lab')" 
+                class="group inline-flex items-center justify-between gap-8 bg-zinc-950 text-white pl-10 pr-6 py-5 rounded-2xl hover:bg-primary hover:text-black transition-all duration-300 shadow-xl shadow-zinc-950/10 hover:shadow-primary/20 cursor-pointer border border-transparent hover:border-white/10">
+            <div class="text-left flex flex-col justify-center">
+                <span class="block text-[9px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-black/70 transition-colors mb-1">
+                    Project Archive
+                </span>
+                <span class="text-lg md:text-xl font-black uppercase tracking-tight leading-none">
+                    Explore Gallery
+                </span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-black/10 flex items-center justify-center transition-colors">
+                <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
+            </div>
+        </button>
+    </div>
 
-         <div class="container mx-auto px-6 py-12 text-center reveal">
-    <button onclick="showPage('gallery')" 
-            class="group inline-flex items-center gap-6 bg-dark text-white px-10 py-5 rounded-2xl hover:bg-primary hover:text-black transition-all duration-500 shadow-2xl">
-        <div class="text-left">
-            <span class="block text-[10px] font-black uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100">Project Archive</span>
-            <span class="text-xl font-black uppercase tracking-tighter">Explore All Installations</span>
+    <div class="container mx-auto px-6 mt-16">
+        <div class="py-12 md:py-16 bg-white rounded-[2.5rem] border border-zinc-200/80 overflow-hidden reveal shadow-sm">
+            <div class="px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-black text-[10px] tracking-[0.3em] uppercase rounded-full border border-primary/20">
+                            High Capacity // 01
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black text-black leading-none uppercase tracking-tighter">
+                            Twin <span class="text-primary">Laboratory</span> Workstations
+                        </h2>
+                        <p class="text-zinc-600 text-sm md:text-base leading-relaxed">
+                            Designed for high-density learning environments, our Twin Table setup provides a centralized hub for up to 20 students. Featuring industrial-grade epoxy surfaces for maximum chemical resistance.
+                        </p>
+                        <ul class="space-y-3 text-xs md:text-sm font-bold text-zinc-500">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-3 text-xs"></i> 7 Integrated Sinks & Drainage</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-3 text-xs"></i> 5 Professional Two-Way Gas Taps</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-3 text-xs"></i> External Gas Cage & Cylinder Included</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xl border border-zinc-100 overflow-hidden">
+                        <table class="w-full text-left text-xs md:text-sm">
+                            <thead class="bg-zinc-950 text-white uppercase text-[9px] tracking-widest border-b border-zinc-800">
+                                <tr>
+                                    <th class="px-6 py-4.5 font-black">Item Description</th>
+                                    <th class="px-6 py-4.5 text-right font-black">Amount (Ksh)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-100 font-bold text-zinc-700">
+                                <tr class="hover:bg-zinc-50/50 transition-colors">
+                                    <td class="px-6 py-4.5 text-zinc-800">3.5m x 1.2m Epoxy Coated Table (Twin Configuration)</td>
+                                    <td class="px-6 py-4.5 text-right text-zinc-400 font-mono">360,000.00</td>
+                                </tr>
+                                <tr class="hover:bg-zinc-50/50 transition-colors">
+                                    <td class="px-6 py-4.5 text-zinc-800">20 Heavy-Duty Laboratory Stools</td>
+                                    <td class="px-6 py-4.5 text-right text-primary font-black uppercase text-[11px] tracking-wider">Included</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-primary/5 border-t-2 border-primary/20">
+                                <tr>
+                                    <td class="px-6 py-5 font-black uppercase text-zinc-900 tracking-tight">Total Installation</td>
+                                    <td class="px-6 py-5 text-right font-black text-lg md:text-xl text-black font-mono">360,000.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-black/20">
-            <i class="fas fa-arrow-right"></i>
-        </div>
-    </button>
-</div>
+    </div>
 
-          
+    <div class="container mx-auto px-6 mt-8">
+        <div class="py-12 md:py-16 bg-zinc-50 rounded-[2.5rem] border border-zinc-200/60 overflow-hidden reveal shadow-sm">
+            <div class="px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div class="bg-white rounded-2xl shadow-xl border border-zinc-100 overflow-hidden order-2 lg:order-1">
+                        <table class="w-full text-left text-xs md:text-sm">
+                            <thead class="bg-zinc-950 text-white uppercase text-[9px] tracking-widest border-b border-zinc-800">
+                                <tr>
+                                    <th class="px-6 py-4.5 font-black">Item Description</th>
+                                    <th class="px-6 py-4.5 text-right font-black">Amount (Ksh)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-100 font-bold text-zinc-700">
+                                <tr class="hover:bg-zinc-50/50 transition-colors">
+                                    <td class="px-6 py-4.5 text-zinc-800">3.5m x 0.6m Portable Epoxy Coated Table</td>
+                                    <td class="px-6 py-4.5 text-right text-zinc-400 font-mono">180,000.00</td>
+                                </tr>
+                                <tr class="hover:bg-zinc-50/50 transition-colors">
+                                    <td class="px-6 py-4.5 text-zinc-800">10 Heavy-Duty Laboratory Stools</td>
+                                    <td class="px-6 py-4.5 text-right text-primary font-black uppercase text-[11px] tracking-wider">Included</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-primary/5 border-t-2 border-primary/20">
+                                <tr>
+                                    <td class="px-6 py-5 font-black uppercase text-zinc-900 tracking-tight">Total Installation</td>
+                                    <td class="px-6 py-5 text-right font-black text-lg md:text-xl text-black font-mono">180,000.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
 
-                <div class="grid lg:grid-cols-2 gap-16 items-start reveal">
-                    <div class="space-y-12">
-                        <h2 class="text-4xl font-black mb-4">Core <span class="text-primary">Specializations</span></h2>
-                        <div class="grid gap-6">
-                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
-                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-atom"></i></div>
-                                <div><h4 class="text-xl font-bold">Physics Labs</h4><p class="text-gray-400 text-sm">Optics, mechanics, and electronics gear.</p></div>
-                            </div>
-                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
-                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-flask"></i></div>
-                                <div><h4 class="text-xl font-bold">Chemistry Labs</h4><p class="text-gray-400 text-sm">Glassware and chemical handling tools.</p></div>
-                            </div>
-                            <div class="flex items-center gap-6 p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary transition-all">
-                                <div class="w-16 h-16 bg-white shadow-md rounded-xl flex items-center justify-center text-3xl text-primary"><i class="fas fa-dna"></i></div>
-                                <div><h4 class="text-xl font-bold">Biology Labs</h4><p class="text-gray-400 text-sm">Microscopy and anatomical models.</p></div>
-                            </div>
+                    <div class="space-y-6 order-1 lg:order-2">
+                        <div class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-black text-[10px] tracking-[0.3em] uppercase rounded-full border border-primary/20">
+                            Flexible Space // 02
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black text-black leading-none uppercase tracking-tighter">
+                            Portable <span class="text-primary">Flex</span> Units
+                        </h2>
+                        <p class="text-zinc-600 text-sm md:text-base leading-relaxed">
+                            Optimized for versatility, our portable units allow for easy reconfiguration of your lab space. Includes full delivery across all 47 counties.
+                        </p>
+                        <div class="p-4 bg-white rounded-xl border border-zinc-200/80 text-xs font-bold text-zinc-500 shadow-sm">
+                            <p class="uppercase tracking-widest mb-1 text-[10px] font-black text-primary">Delivery Note:</p>
+                            <p class="leading-relaxed font-semibold text-zinc-500">Rates are completely inclusive of all county logistics and on-site delivery setup charges.</p>
                         </div>
                     </div>
-                   <div class="bg-dark p-12 text-white border border-white/5 relative overflow-hidden">
-    <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-        <i class="fas fa-boxes-stacked text-8xl"></i>
-    </div>
-
-    <h3 class="text-3xl font-black mb-12 text-primary uppercase tracking-tighter flex items-center gap-4">
-        <span class="w-8 h-[2px] bg-primary"></span>
-        Inventory
-    </h3>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
-            <i class="fas fa-microscope text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Microscopes</p>
-        </div>
-
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
-            <i class="fas fa-flask text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Lab Glassware</p>
-        </div>
-
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
-            <i class="fas fa-scale-balanced text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Balances</p>
-        </div>
-
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
-            <i class="fas fa-vial-circle-check text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Experiment Kits</p>
-        </div>
-
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-primary transition-all duration-300">
-            <i class="fas fa-faucet text-2xl text-primary mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Gas Taps</p>
-        </div>
-
-        <div class="group p-6 bg-zinc-900/50 border border-white/5 hover:border-orange transition-all duration-300">
-            <i class="fas fa-shield-halved text-2xl text-orange mb-4 group-hover:scale-110 transition-transform"></i>
-            <p class="text-xs font-black uppercase tracking-widest">Safety Gear</p>
-        </div>
-    </div>
-</div>
-
-                
-
-
-                  
-        </section>
-
-        <section id="page-schools" class="page-content hidden">
-           <div class="relative min-h-screen flex flex-col justify-between pt-40 pb-12 px-6 bg-white overflow-hidden">
-    <div class="container mx-auto">
-        <div class="flex items-start gap-8">
-            <div class="w-4 h-48 bg-orange mt-2"></div> <div class="max-w-5xl">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[11px] tracking-[0.3em] uppercase rounded-sm border border-zinc-200">
-                        Section // 02 Educational_Publishing
-                    </span>
                 </div>
-               <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-black uppercase tracking-tighter leading-[0.8] break-words">
-    SCHOOL <br> <span class="text-orange">SUPPLIES</span>
-</h1>
-                <p class="mt-10 text-zinc-400 font-bold uppercase tracking-[0.2em] text-sm max-w-xl leading-relaxed">
-                    Modernizing learning environments with ergonomic furniture and curriculum resources.
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-24 mb-32 bg-zinc-950 py-20 px-6 reveal border-y border-zinc-900">
+        <div class="container mx-auto">
+            <div class="mb-12 text-left border-l-4 border-orange pl-6">
+                <h2 class="text-3xl md:text-4xl font-black text-white tracking-tighter uppercase">
+                    Precision <span class="text-orange">Gas Tap</span> Validation
+                </h2>
+                <p class="text-zinc-500 font-bold text-xs md:text-sm mt-1.5 tracking-widest uppercase">
+                    Live Laboratory Safety & Pressure Testing
                 </p>
             </div>
-        </div>
-    </div>
 
-    <div class="container mx-auto flex justify-center md:justify-start">
-        <div class="brutalist-scroll flex flex-col items-center gap-2 cursor-pointer group" onclick="window.scrollBy({top: window.innerHeight, behavior: 'smooth'})">
-            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-orange transition-colors">Scroll to Catalog</span>
-            <div class="w-12 h-12 rounded-full border-2 border-orange flex items-center justify-center text-orange text-xl">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
-    </div>
-</div>
+            <div class="max-w-6xl mx-auto aspect-[21/9] max-h-[450px] bg-black relative group border border-white/5 rounded-2xl overflow-hidden shadow-2xl">
+                <video 
+                    id="testing-video"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-1000"
+                    muted 
+                    loop 
+                    playsinline
+                    preload="auto">
+                    <source src="https://www.dropbox.com/scl/fi/41stvm26vwy46iwfux5b9/71ae7444-9fa3-4418-91ab-26d25f559d43.MOV?rlkey=4vjvdfs5at4sw0lpi3wa7z8s1&st=bcxcyr2x&raw=1" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
 
-            <div class="container mx-auto px-6 py-12 bg-white">
+                <div class="absolute top-6 right-6 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 z-10">
+                    <div class="w-2 h-2 bg-red-600 rounded-full animate-ping"></div>
+                    <span class="text-[9px] font-mono text-white/80 tracking-tighter uppercase">REC // SYSTEM_CHECK</span>
                 </div>
 
-            <div class="container mx-auto px-6 py-24">
-                <div class="mb-32 reveal">
-    <div class="text-center mb-16">
-        <h2 class="text-4xl font-black mb-4">Classroom <span class="text-orange">Modernization</span></h2>
-        <p class="text-gray-500">Upgrade your institution's furniture to ergonomic standards for better learning.</p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <div class="relative group overflow-hidden rounded-3xl shadow-lg">
-            <span class="absolute top-6 left-6 z-20 bg-black text-white px-5 py-2 rounded-full text-xs font-black">BEFORE</span>
-            <img src="https://lh3.googleusercontent.com/u/0/d/1P5d7KgzTfB6AbjldzI3qsD5-3_NUVnup" class="w-full h-[450px] object-cover grayscale brightness-50" alt="Before Furniture">
-        </div>
-        <div class="relative group overflow-hidden rounded-3xl shadow-lg">
-            <span class="absolute top-6 left-6 z-20 bg-orange text-white px-5 py-2 rounded-full text-xs font-black">AFTER</span>
-            <img src="https://lh3.googleusercontent.com/u/0/d/1vc5DW8Uuf0UqcyYMSqR2r5_jjFleq__R" class="w-full h-[450px] object-cover" alt="After Furniture">
-        </div>
-    </div>
-                   <div class="container mx-auto px-6 py-12 text-center reveal">
-    <button onclick="showPage('furniture')" 
-            class="group inline-flex items-center gap-6 bg-dark text-white px-10 py-5 rounded-2xl hover:bg-orange hover:text-white transition-all duration-500 shadow-2xl">
-        <div class="text-left">
-            <span class="block text-[10px] font-black uppercase tracking-[0.3em] opacity-50 group-hover:opacity-100">Product Archive</span>
-            <span class="text-xl font-black uppercase tracking-tighter">View All Furniture Designs</span>
-        </div>
-        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20">
-            <i class="fas fa-arrow-right"></i>
-        </div>
-    </button>
-</div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-chair"></i></div>
-                        <h3 class="text-2xl font-black mb-4">School Furniture</h3>
-                        <p class="text-gray-500">Durable, ergonomic desks and chairs designed for long study hours and classroom comfort.</p>
-                    </div>
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-book-open"></i></div>
-                        <h3 class="text-2xl font-black mb-4">Revision Books</h3>
-                        <p class="text-gray-500">High-quality publications and curriculum-aligned study guides for Kenyan learners.</p>
-                    </div>
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-cloud-sun"></i></div>
-                        <h3 class="text-2xl font-black mb-4">Weather Stations</h3>
-                        <p class="text-gray-500">Professional installation of weather station kits for geography and science departments.</p>
-                    </div>
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-map"></i></div>
-                        <h3 class="text-2xl font-black mb-4">Charts & Posters</h3>
-                        <p class="text-gray-500">Laminated, high-resolution learning charts and educational posters for all subjects.</p>
-                    </div>
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-file-signature"></i></div>
-                        <h3 class="text-2xl font-black mb-4">Exam Materials</h3>
-                        <p class="text-gray-500">Provision of specialized stationary and materials strictly curated for national examinations.</p>
-                    </div>
-                    <div class="p-10 bg-zinc-50 rounded-[2.5rem] border border-zinc-100 hover:border-orange transition-all">
-                        <div class="w-16 h-16 bg-orange/10 rounded-2xl flex items-center justify-center text-3xl text-orange mb-6"><i class="fas fa-tshirt"></i></div>
-                        <h3 class="text-2xl font-black mb-4">School Branding</h3>
-                        <p class="text-gray-500">Customized branding materials to elevate your institution's identity and professional presence.</p>
-                    </div>
+                <div class="absolute inset-0 pointer-events-none border-y border-white/5 z-10">
+                    <div class="w-full h-[1px] bg-white/20 absolute top-0 animate-[scan_4s_linear_infinite]"></div>
                 </div>
             </div>
 
-          <div class="py-16 bg-zinc-950 text-white">
-        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto mt-8 flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-white/10 pt-8">
+                <div class="text-left">
+                    <p class="text-white text-xl md:text-2xl font-black tracking-tight uppercase leading-none mb-3">Gas Outlet Verification</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="px-3 py-1 bg-primary text-black text-[9px] font-black uppercase tracking-wider rounded-sm">Standard: ISO LAB 2026</span>
+                        <span class="text-white/40 font-mono text-[10px] uppercase tracking-widest">Flow Rate: Optimal</span>
+                    </div>
+                </div>
+                <div class="hidden md:block text-right">
+                    <div class="h-1 w-20 bg-orange ml-auto mb-2"></div>
+                    <p class="text-[9px] font-mono text-zinc-600 uppercase tracking-[0.2em]">Pillar_Safety_Protocol_v2.1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16 text-center reveal">
+        <button onclick="showPage('video')" 
+                class="group inline-flex items-center justify-between gap-8 bg-zinc-950 text-white pl-10 pr-6 py-5 rounded-2xl hover:bg-orange hover:text-black transition-all duration-300 shadow-xl shadow-zinc-950/10 hover:shadow-orange/20 cursor-pointer border border-transparent hover:border-white/10">
+            <div class="text-left flex flex-col justify-center">
+                <span class="block text-[9px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-black/70 transition-colors mb-1">
+                    Product Archive
+                </span>
+                <span class="text-lg md:text-xl font-black uppercase tracking-tight leading-none">
+                    View Videos of installed labs
+                </span>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-300"></i>
+            </div>
+        </button>
+    </div>
+
+    <div class="container mx-auto px-6 mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start reveal">
+            <div class="space-y-8">
+                <div class="border-l-4 border-primary pl-4">
+                    <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter">
+                        Core <span class="text-primary">Specializations</span>
+                    </h2>
+                    <p class="text-zinc-400 font-bold uppercase tracking-wider text-[10px] mt-1">
+                        Tailored educational laboratory configurations
+                    </p>
+                </div>
+                
+                <div class="grid gap-4">
+                    <div class="flex items-center gap-5 p-5 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md">
+                        <div class="w-14 h-14 min-w-[3.5rem] bg-white border border-zinc-100 shadow-sm rounded-xl flex items-center justify-center text-2xl text-primary group-hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-black uppercase tracking-tight text-zinc-900">Physics Labs</h4>
+                            <p class="text-zinc-500 text-xs mt-0.5">Optics, mechanics, and precision bench electronics gear.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-5 p-5 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md">
+                        <div class="w-14 h-14 min-w-[3.5rem] bg-white border border-zinc-100 shadow-sm rounded-xl flex items-center justify-center text-2xl text-primary group-hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-black uppercase tracking-tight text-zinc-900">Chemistry Labs</h4>
+                            <p class="text-zinc-500 text-xs mt-0.5">Premium glassware, fume extraction, and safe reagent handling tools.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-5 p-5 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-primary hover:bg-white transition-all duration-300 group shadow-sm hover:shadow-md">
+                        <div class="w-14 h-14 min-w-[3.5rem] bg-white border border-zinc-100 shadow-sm rounded-xl flex items-center justify-center text-2xl text-primary group-hover:scale-105 transition-transform duration-300">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-black uppercase tracking-tight text-zinc-900">Biology Labs</h4>
+                            <p class="text-zinc-500 text-xs mt-0.5">Advanced microscopy, specimen storage, and anatomical models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-zinc-950 p-8 md:p-10 text-white rounded-[2.5rem] border border-zinc-900 relative overflow-hidden shadow-xl shadow-zinc-950/10">
+                <div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+                    <i class="fas fa-boxes-stacked text-9xl"></i>
+                </div>
+
+                <h3 class="text-2xl font-black text-primary uppercase tracking-tighter flex items-center gap-3 mb-8">
+                    <span class="w-6 h-[2px] bg-primary"></span>
+                    Inventory Breakdown
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-primary transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-microscope text-xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Microscopes</p>
+                    </div>
+
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-orange transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-flask text-xl text-orange mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Lab Glassware</p>
+                    </div>
+
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-primary transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-scale-balanced text-xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Balances</p>
+                    </div>
+
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-orange transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-vial-circle-check text-xl text-orange mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Experiment Kits</p>
+                    </div>
+
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-primary transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-faucet text-xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Gas Taps</p>
+                    </div>
+
+                    <div class="group p-5 bg-zinc-900/40 rounded-2xl border border-white/5 hover:border-orange transition-all duration-300 backdrop-blur-sm">
+                        <i class="fas fa-shield-halved text-xl text-orange mb-3 block group-hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-[10px] font-black uppercase tracking-wider text-zinc-300 group-hover:text-white transition-colors">Safety Gear</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="page-schools" class="page-content hidden">
+    
+    <div class="relative min-h-[90vh] flex flex-col justify-between pt-36 md:pt-44 pb-12 px-6 bg-white overflow-hidden">
+        <div class="container mx-auto">
+            <div class="flex items-start gap-6 md:gap-8">
+                <div class="w-1.5 h-32 md:h-48 bg-orange-600 rounded-full mt-2 shrink-0"></div> 
+                
+                <div class="max-w-5xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="px-4 py-1.5 bg-zinc-100 text-zinc-500 font-black text-[10px] tracking-[0.3em] uppercase rounded border border-zinc-200/60">
+                            Section // 02 Educational Supplies
+                        </span>
+                    </div>
+                    <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-black text-zinc-950 uppercase tracking-tighter leading-[0.85] break-words">
+                        SCHOOL <br> <span class="text-orange-600">SUPPLIES</span>
+                    </h1>
+                    <p class="mt-8 text-zinc-400 font-bold uppercase tracking-[0.2em] text-xs md:text-sm max-w-xl leading-relaxed">
+                        Modernizing learning environments with ergonomic furniture and professional curriculum resources.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto flex justify-center md:justify-start pt-12">
+            <div class="flex flex-col items-center md:items-start gap-2.5 cursor-pointer group" onclick="window.scrollBy({top: window.innerHeight - 100, behavior: 'smooth'})">
+                <span class="text-[9px] font-black uppercase tracking-[0.25em] text-zinc-300 group-hover:text-orange-600 transition-colors">Scroll to Catalog</span>
+                <div class="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-400 group-hover:text-orange-600 group-hover:border-orange-600 transition-all duration-300">
+                    <i class="fas fa-chevron-down text-xs animate-bounce"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-12 space-y-24">
+        
+        <div class="reveal space-y-12">
+            <div class="text-center max-w-2xl mx-auto">
+                <span class="text-[9px] font-black uppercase tracking-[0.25em] text-orange-600 mb-2 block">Institutional Transformations</span>
+                <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900">Classroom <span class="text-orange-600">Modernization</span></h2>
+                <p class="text-sm font-medium text-zinc-500 mt-2">Upgrade your institution's layouts to ergonomic standards optimized for deep study concentration.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="relative group overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-100 shadow-sm">
+                    <span class="absolute top-4 left-4 z-20 bg-zinc-950/80 backdrop-blur-md text-white px-4 py-1.5 rounded-lg text-[9px] font-black tracking-widest uppercase">BEFORE</span>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1P5d7KgzTfB6AbjldzI3qsD5-3_NUVnup" class="w-full h-[380px] md:h-[450px] object-cover grayscale brightness-75" alt="Before Furniture Layout">
+                </div>
+                <div class="relative group overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-100 shadow-sm">
+                    <span class="absolute top-4 left-4 z-20 bg-orange-600 text-white px-4 py-1.5 rounded-lg text-[9px] font-black tracking-widest uppercase shadow-md">AFTER MODERNIZATION</span>
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1vc5DW8Uuf0UqcyYMSqR2r5_jjFleq__R" class="w-full h-[380px] md:h-[450px] object-cover" alt="After Finished Layout">
+                </div>
+            </div>
+
+            <div class="text-center pt-4">
+                <button onclick="showPage('furniture')" 
+                        class="group inline-flex items-center justify-between gap-8 bg-zinc-950 text-white pl-8 pr-5 py-4 rounded-xl hover:bg-orange-600 transition-all duration-300 shadow-xl shadow-zinc-950/10 hover:shadow-orange-600/20 cursor-pointer">
+                    <div class="text-left flex flex-col justify-center">
+                        <span class="block text-[8px] font-black uppercase tracking-[0.25em] text-zinc-400 group-hover:text-white/80 transition-colors mb-0.5">Product Archive</span>
+                        <span class="text-sm font-black uppercase tracking-wider leading-none">View Furniture Catalog</span>
+                    </div>
+                    <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+            
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-chair"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">School Furniture</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">Durable, ergonomic dual desks, single lockers, and chairs tailored for long hours of classroom comfort.</p>
+            </div>
+
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">Revision Books</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">High-quality curriculum-aligned publications, charts, and revision guides built for modern Kenyan educational systems.</p>
+            </div>
+
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">Weather Stations</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">Complete hardware configuration and standard structural mounting for geographical study departments.</p>
+            </div>
+
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-map"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">Charts & Posters</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">Heavyweight, matte-laminated educational reference visual maps and reference posters for easy mounting.</p>
+            </div>
+
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">Exam Materials</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">Distribution of premium mathematical sets, graph papers, and stationery supplies configured for national exams.</p>
+            </div>
+
+            <div class="p-6 md:p-8 bg-zinc-50 rounded-[2rem] border border-zinc-200/60 hover:border-orange-600 hover:bg-white hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 group">
+                <div class="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-xl text-orange-600 mb-6 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <h3 class="text-lg font-black uppercase tracking-tight text-zinc-900 mb-2">School Branding</h3>
+                <p class="text-zinc-500 text-xs font-medium leading-relaxed">Precision custom print setups, embroidery badges, and modern campus directional signage systems.</p>
+            </div>
+        </div>
+
+        <div class="rounded-[2.5rem] bg-zinc-950 text-white p-8 md:p-12 border border-zinc-900 shadow-2xl reveal">
             <div class="flex flex-col lg:flex-row gap-12 items-center">
+                
                 <div class="w-full lg:w-1/2 space-y-6 order-2 lg:order-1">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-lg">
                         <span class="relative flex h-2 w-2">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                         </span>
-                        <span class="text-primary font-black text-[10px] tracking-[0.3em] uppercase">Limited Stock Sale</span>
+                        <span class="text-primary font-black text-[9px] tracking-[0.25em] uppercase">Limited Stock Clearance</span>
                     </div>
 
-                    <h2 class="text-5xl font-black uppercase tracking-tighter">Premium <span class="text-primary">Imported</span> Boards</h2>
-                    <p class="text-zinc-400">High-gloss, scratch-resistant whiteboards. Precision engineered for smooth writing and ghost-free erasing.</p>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight">Premium <span class="text-primary">Imported</span> Boards</h2>
+                    <p class="text-zinc-400 text-sm leading-relaxed">High-gloss, enamel coated scratch-resistant dry erase whiteboards. Precision engineered for effortless writing and zero ghosting trace lines.</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-6 bg-zinc-900 rounded-3xl border border-zinc-800 hover:border-primary/50 transition-colors group">
-                            <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-2">Large Format (8ft x 4ft)</p>
+                        <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 hover:border-primary/40 transition-colors group">
+                            <p class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mb-2">Large Format (8ft x 4ft)</p>
                             <div class="flex flex-col">
-                                <span class="text-zinc-600 line-through text-sm italic mb-1">Was 9,500/-</span>
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-zinc-400 text-xs font-bold uppercase">Now</span>
-                                    <span class="text-2xl font-black text-white group-hover:text-primary transition-colors">8,500 <small class="text-[10px]">KES</small></span>
+                                <span class="text-zinc-600 line-through text-xs italic mb-0.5">Was 9,500/-</span>
+                                <div class="flex items-baseline gap-1.5">
+                                    <span class="text-zinc-400 text-[10px] font-black uppercase tracking-wider">Now</span>
+                                    <span class="text-xl font-black text-white group-hover:text-primary transition-colors">8,500 <small class="text-[10px] text-zinc-400">KES</small></span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="p-6 bg-zinc-900 rounded-3xl border border-zinc-800 hover:border-primary/50 transition-colors group">
-                            <p class="text-zinc-500 text-[10px] uppercase tracking-widest mb-2">Grid Board (4ft x 4ft)</p>
+                        <div class="p-5 bg-zinc-900/60 rounded-2xl border border-zinc-800 hover:border-primary/40 transition-colors group">
+                            <p class="text-zinc-500 text-[9px] font-bold uppercase tracking-wider mb-2">Grid Board (4ft x 4ft)</p>
                             <div class="flex flex-col">
-                                <span class="text-zinc-600 line-through text-sm italic mb-1">Was 8,500/-</span>
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-zinc-400 text-xs font-bold uppercase">Now</span>
-                                    <span class="text-2xl font-black text-white group-hover:text-primary transition-colors">7,000 <small class="text-[10px]">KES</small></span>
+                                <span class="text-zinc-600 line-through text-xs italic mb-0.5">Was 8,500/-</span>
+                                <div class="flex items-baseline gap-1.5">
+                                    <span class="text-zinc-400 text-[10px] font-black uppercase tracking-wider">Now</span>
+                                    <span class="text-xl font-black text-white group-hover:text-primary transition-colors">7,000 <small class="text-[10px] text-zinc-400">KES</small></span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <a href="https://wa.me/254712345678" class="inline-flex w-full sm:w-auto items-center justify-center px-8 py-5 bg-primary text-black font-black uppercase tracking-tighter rounded-2xl hover:scale-105 transition-transform shadow-xl shadow-primary/10">
-                        Order via WhatsApp <i class="fab fa-whatsapp ml-3 text-lg"></i>
-                    </a>
+                    <div class="pt-2">
+                        <a href="https://wa.me/254712345678" target="_blank" 
+                           class="inline-flex w-full sm:w-auto items-center justify-between gap-6 bg-primary text-black pl-8 pr-5 py-4 rounded-xl font-black uppercase text-xs tracking-wider hover:bg-white transition-all duration-300">
+                            <span>Order via WhatsApp</span>
+                            <div class="w-7 h-7 rounded-lg bg-black/5 flex items-center justify-center text-black">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="w-full lg:w-1/2 order-1 lg:order-2">
-                    <div class="rounded-[2.5rem] overflow-hidden border-4 md:border-8 border-zinc-900 shadow-2xl relative group bg-zinc-900">
+                    <div class="rounded-[2rem] overflow-hidden border border-zinc-800 shadow-2xl relative group bg-zinc-900">
                         <img src="https://dl.dropbox.com/s/scl/fi/y5wc8lkyxe8pyn910x391/IMG_6140.JPG?rlkey=oyndta1sez0915qbhw0voenz1&raw=1" 
-                             alt="Premium Whiteboard" 
-                             class="w-full h-auto block object-contain">
-                        <div class="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl hidden md:block">
-                            <p class="text-white text-[10px] font-bold uppercase tracking-widest">Surface Finish</p>
-                            <p class="text-primary text-xl font-black">Ultra-White Gloss</p>
+                             alt="Premium Enamel Finished Whiteboard" 
+                             class="w-full h-auto block object-contain mix-blend-lighten max-h-[380px] mx-auto">
+                        <div class="absolute bottom-4 right-4 bg-zinc-950/80 backdrop-blur-md border border-zinc-800 p-3 rounded-xl hidden md:block">
+                            <p class="text-zinc-500 text-[9px] font-bold uppercase tracking-widest leading-none mb-1">Surface Finish</p>
+                            <p class="text-primary text-sm font-black uppercase tracking-tight">Ultra-White Gloss</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
 
-               <div class="py-20 px-4 bg-white reveal">
-        <div class="max-w-4xl mx-auto">
-            <div class="mb-10">
-                <span class="text-orange font-black text-[10px] tracking-widest uppercase">Meteorological Tools // 05</span>
-                <h2 class="text-4xl font-black uppercase tracking-tighter mt-4">Professional <span class="text-orange">Weather</span> Stations</h2>
-                <div class="mt-6 space-y-4 text-gray-600">
-                    <p>Our weather station model is an invaluable addition to your school's educational resources, offering real-time weather data and comprehensive measurements. Students can engage in hands-on learning experiences, deepening their understanding of meteorology.</p>
-                    <p class="p-4 bg-zinc-50 border-l-4 border-orange italic text-sm">Constructed using high-quality materials, including durable steel rods, our weather station model ensures longevity and reliability.</p>
+        <div class="bg-zinc-50/50 rounded-[2.5rem] border border-zinc-200/60 p-6 md:p-10 reveal">
+            <div class="max-w-4xl mx-auto space-y-10">
+                <div>
+                    <span class="text-orange-600 font-black text-[10px] tracking-[0.25em] uppercase">Meteorological Labs // Section 05</span>
+                    <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-zinc-900 mt-2">Professional <span class="text-orange-600">Weather</span> Stations</h2>
+                    <div class="mt-4 space-y-3 text-sm text-zinc-500 leading-relaxed font-medium">
+                        <p>Our curriculum weather station models are an essential addition to geography and science rooms, presenting accurate real-time data readings. Learners get immediate exposure to primary data capture routines, strengthening practical field study modules.</p>
+                        <p class="p-4 bg-white border-l-4 border-orange-600 rounded-r-xl italic text-xs text-zinc-700 shadow-sm font-medium">Constructed utilizing premium high-tensile structural steel rods, our instruments ensure perfect environmental longevity across Kenyan climates.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-10 relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-    <img src="https://dl.dropbox.com/scl/fi/mqws64lcdx2obp67h2w64/IMG_6150.jpg?rlkey=xcovmyrboh27gbn7uu9cutchh&raw=1" 
-         alt="School Weather Station Installation" 
-         class="w-full h-auto block object-cover max-h-[400px]">
-    <div class="absolute bottom-4 left-4">
-        <span class="bg-orange text-white text-[10px] font-black uppercase px-4 py-2 rounded-lg shadow-lg">Professional Installation</span>
-    </div>
-</div>
-
-            <div class="w-full overflow-hidden rounded-2xl border border-zinc-200 shadow-xl bg-white">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[320px]">
-                        <thead class="bg-zinc-900 text-white text-[10px] uppercase">
-                            <tr>
-                                <th class="px-4 py-4 tracking-widest">Description of Instruments</th>
-                                <th class="px-4 py-4 text-right tracking-widest">Amount (Ksh)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm font-bold text-zinc-700 divide-y divide-zinc-100">
-                            <tr><td class="px-4 py-4">Wind Vane (10ft Steel Pole)</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Windsock (10ft Steel Pole)</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Anemometer (10ft Steel Pole)</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Standard Rain Gauge</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Stevenson Screen</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Max/Min & Alcohol Thermometers</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                            <tr><td class="px-4 py-4">Hygrometer & Hydrometer</td><td class="px-4 py-4 text-right text-zinc-300">—</td></tr>
-                        </tbody>
-                        <tfoot class="bg-orange/5 border-t-2 border-orange/20">
-                            <tr>
-                                <td class="px-4 py-6 font-black text-orange uppercase">Full Installation Total</td>
-                                <td class="px-4 py-6 text-right font-black text-xl text-black">120,000.00</td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                <div class="relative rounded-[2rem] overflow-hidden shadow-md border border-zinc-200 bg-zinc-100">
+                    <img src="https://dl.dropbox.com/scl/fi/mqws64lcdx2obp67h2w64/IMG_6150.jpg?rlkey=xcovmyrboh27gbn7uu9cutchh&raw=1" 
+                         alt="School Weather Station Structural Installation Setup" 
+                         class="w-full h-auto block object-cover max-h-[380px]">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-zinc-950/90 backdrop-blur-md text-white text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-lg shadow-lg border border-white/10">Full On-Site Civil Setup Included</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="mt-8 flex flex-wrap gap-2 justify-center">
-                
+
+                <div class="w-full overflow-hidden rounded-2xl border border-zinc-200 shadow-sm bg-white">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[400px]">
+                            <thead class="bg-zinc-950 text-white text-[9px] uppercase font-black tracking-widest border-b border-zinc-900">
+                                <tr>
+                                    <th class="px-6 py-4">Instrument Component Architecture</th>
+                                    <th class="px-6 py-4 text-right">Standard Rate (KES)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-xs font-bold text-zinc-700 divide-y divide-zinc-100">
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Wind Vane (10ft Structural Steel Pole Setup)</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Windsock Assembly (10ft Rigid Frame Mounting)</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Cup Anemometer (Precision Bearing Calibration)</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Standard Copper Rain Gauge System</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Louvered Stevenson Screen Frame (Dual Roof Standard)</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Max/Min Six's Capillary & Alcohol Thermometers</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                                <tr class="hover:bg-zinc-50/50"><td class="px-6 py-3.5 font-bold text-zinc-800">Mason's Wet & Dry Bulb Hygrometer Calibration Set</td><td class="px-6 py-3.5 text-right text-zinc-300 italic">Inclusive Bundle</td></tr>
+                            </tbody>
+                            <tfoot class="bg-orange-600/5 border-t border-orange-600/20">
+                                <tr>
+                                    <td class="px-6 py-5 font-black text-orange-600 uppercase text-xs tracking-wider">Turnkey Ground Installation Contract</td>
+                                    <td class="px-6 py-5 text-right font-black text-lg text-zinc-950">120,000.00 <small class="text-[10px] text-zinc-400 font-bold">KES</small></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
-        </section>
+</section>
 
         
 
@@ -898,93 +1119,7 @@ img, video, canvas {
     </main>
  
        
-<section id="page-gallery" class="hidden min-h-screen bg-white pt-40 pb-20">
-    <div class="container mx-auto px-6">
-        <div class="mb-16 border-l-8 border-primary pl-8 reveal">
-            <h1 class="text-5xl md:text-7xl font-black text-black uppercase tracking-tighter leading-none">
-                Project <br> <span class="text-primary">Showcase</span>
-            </h1>
-            <p class="mt-4 text-zinc-500 font-bold uppercase tracking-[0.2em] text-sm max-w-xl">
-                6 Verified Laboratory Installations Across Kenyan Schools
-            </p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
-            
-            <div class="group space-y-4">
-                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-zinc-200 shadow-lg">
-                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
-                        <source src="https://www.dropbox.com/scl/fi/gg5s8xxnoftp4wrkihmkv/6b9b2fb7-a29e-4597-80f5-db967d7e4b8b.mov?rlkey=a67lqtuay97zt4l5pdfsd2nj5&st=8vuqpixo&raw=1" type="video/mp4">
-                        <source src="https://www.dropbox.com/scl/fi/gg5s8xxnoftp4wrkihmkv/6b9b2fb7-a29e-4597-80f5-db967d7e4b8b.mov?rlkey=a67lqtuay97zt4l5pdfsd2nj5&st=8vuqpixo&raw=1" type="video/quicktime">
-                    </video>
-                </div>
-                <div class="px-2">
-                    <h3 class="font-black uppercase tracking-tight text-lg text-black">Logos Christian School</h3>
-                    <p class="text-xs font-bold text-primary uppercase tracking-widest">Nairobi</p>
-                </div>
-            </div>
-
-            <div class="group space-y-4">
-                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-zinc-200 shadow-lg">
-                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
-                        <source src="https://www.dropbox.com/scl/fi/8a9cq4nynilp6pc52ezmw/VIDEO-2026-04-25-19-04-39.mp4?rlkey=o35igzvnvwu2pw5gl0kyxzs1b&st=zjj6pv03&raw=1" type="video/mp4">
-                    </video>
-                </div>
-                <div class="px-2">
-                    <h3 class="font-black uppercase tracking-tight text-lg text-black">N/A</h3>
-                    <p class="text-xs font-bold text-primary uppercase tracking-widest">N/A</p>
-                </div>
-            </div>
-
-            <div class="group space-y-4">
-                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-zinc-200 shadow-lg">
-                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
-                        <source src="https://www.dropbox.com/scl/fi/pz7qpe734l7c66yowcwzd/VIDEO-2026-04-25-19-04-40.mov?rlkey=gipw7zvcufyacbmxnwuiea5bl&st=ie0cdv86&raw=1" type="video/mp4">
-                        <source src="https://www.dropbox.com/scl/fi/pz7qpe734l7c66yowcwzd/VIDEO-2026-04-25-19-04-40.mov?rlkey=gipw7zvcufyacbmxnwuiea5bl&st=ie0cdv86&raw=1" type="video/quicktime">
-                    </video>
-                </div>
-                <div class="px-2">
-                    <h3 class="font-black uppercase tracking-tight text-lg text-black">MT ST Mary Girl's Junior Secondary</h3>
-                    <p class="text-xs font-bold text-primary uppercase tracking-widest">Baringo</p>
-                </div>
-            </div>
-
-            <div class="group space-y-4">
-                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-zinc-200 shadow-lg">
-                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
-                        <source src="https://www.dropbox.com/scl/fi/2hae8xg4xcfwlvala7xjp/VIDEO-2026-04-25-19-07-23.mp4?rlkey=1lgcxtog63t8bqiecrdko5pej&st=dwxb3fgc&raw=1" type="video/mp4">
-                    </video>
-                </div>
-                <div class="px-2">
-                    <h3 class="font-black uppercase tracking-tight text-lg text-black">Marry Immaculate Primary</h3>
-                    <p class="text-xs font-bold text-primary uppercase tracking-widest">Eldoret</p>
-                </div>
-            </div>
-
-            <div class="group space-y-4">
-                <div class="relative aspect-video bg-black rounded-3xl overflow-hidden border border-zinc-200 shadow-lg">
-                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
-                        <source src="https://www.dropbox.com/scl/fi/tkt3e7wy5msqr12aauel7/VIDEO-2026-04-25-19-04-41.mp4?rlkey=1qsvrd85rgprp5lbxjtx9gqx3&st=eoim9da3&raw=1" type="video/mp4">
-                    </video>
-                </div>
-                <div class="px-2">
-                    <h3 class="font-black uppercase tracking-tight text-lg text-black">Encheshoroi Dreamers Academy</h3>
-                    <p class="text-xs font-bold text-primary uppercase tracking-widest">Narok</p>
-                </div>
-            </div>
-
-           
-
-        </div>
-
-        <div class="mt-20 pt-10 border-t border-zinc-100">
-            <button onclick="showPage('labs')" class="group text-zinc-400 hover:text-black font-black uppercase tracking-widest text-[10px] flex items-center gap-4 transition-all">
-                <i class="fas fa-chevron-left group-hover:-translate-x-2 transition-transform"></i> 
-                Back to Lab Installations
-            </button>
-        </div>
-    </div>
-</section>
 
        
 <section id="page-furniture" class="hidden fixed inset-0 z-50 bg-white overflow-y-auto pt-24 pb-20">
@@ -998,172 +1133,269 @@ img, video, canvas {
             </p>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 reveal">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 reveal">
             
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/kt1uhbg5g1eq8tg5ufcdq/PHOTO-2026-04-25-18-40-20.jpg?rlkey=agiog57xch80lpwa8y8t90x47&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Classroom Chair">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/kt1uhbg5g1eq8tg5ufcdq/PHOTO-2026-04-25-18-40-20.jpg?rlkey=agiog57xch80lpwa8y8t90x47&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Classroom Chair">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Classroom Chair</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Classroom Chair</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/1uf6mg229i8fg56b4zlvd/PHOTO-2026-04-25-18-40-22.jpg?rlkey=4zsqys5216afo92xhtg0zfzg4&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Kindergarten Dual Desk">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/1uf6mg229i8fg56b4zlvd/PHOTO-2026-04-25-18-40-22.jpg?rlkey=4zsqys5216afo92xhtg0zfzg4&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Kindergarten Dual Desk">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Kindergarten Dual Desk</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Kindergarten Dual Desk</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/bl5rra5pcxu9tcol8m2w/PHOTO-2026-04-25-19-07-23.jpg?rlkey=ezfibbsfuio6yefty3oh3lk4b&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Basic Single Desk">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/bl5rra5pcxu9tcol8m2w/PHOTO-2026-04-25-19-07-23.jpg?rlkey=ezfibbsfuio6yefty3oh3lk4b&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Basic Single Desk">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Basic Single Desk</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Basic Single Desk</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/qaurl2wqla1hd6bjxunrh/1f6c4af5-9129-4b64-876f-117b4ce4cbac.jpeg?rlkey=4dmelgi2nlbgevyqt8ka6ob0t&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Modern Educational Seating">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/qaurl2wqla1hd6bjxunrh/1f6c4af5-9129-4b64-876f-117b4ce4cbac.jpeg?rlkey=4dmelgi2nlbgevyqt8ka6ob0t&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Modern Educational Seating">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Modern Educational Seating</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Modern Educational Seating</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/9rsg7y10uatjw7ee5dc1r/PHOTO-2026-04-25-19-07-24-2.jpg?rlkey=7khcsx0bw4xkh4pjbkw4jb0rc&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Geometrical Table">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/9rsg7y10uatjw7ee5dc1r/PHOTO-2026-04-25-19-07-24-2.jpg?rlkey=7khcsx0bw4xkh4pjbkw4jb0rc&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Geometrical Table">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Geometrical Table</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Geometrical Table</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/3ho6c8uru21ckl14n2zdk/PHOTO-2026-04-25-19-07-24.jpg?rlkey=cpi752kko85f35x1977hcnv4u&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Triple Study Station">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/3ho6c8uru21ckl14n2zdk/PHOTO-2026-04-25-19-07-24.jpg?rlkey=cpi752kko85f35x1977hcnv4u&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Triple Study Station">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Triple Study Station</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Triple Study Station</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/r6uoo4meg3nncz7rh31qo/PHOTO-2026-04-25-19-07-25-1.jpg?rlkey=dvna6fup07v83tcuzut6kxg0c&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Collaborative Hub">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/r6uoo4meg3nncz7rh31qo/PHOTO-2026-04-25-19-07-25-1.jpg?rlkey=dvna6fup07v83tcuzut6kxg0c&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Collaborative Hub">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Collaborative Hub</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Collaborative Hub</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/8gxsjbufx6ydkyx8lx7l/PHOTO-2026-04-25-19-07-25-2.jpg?rlkey=ugvffxa7u8dhy4wuvjt82c23f&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Modern Single Desk">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/8gxsjbufx6ydkyx8lx7l/PHOTO-2026-04-25-19-07-25-2.jpg?rlkey=ugvffxa7u8dhy4wuvjt82c23f&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Modern Single Desk">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Modern Single Desk</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Modern Single Desk</h4>
+                </div>
             </div>
 
-            <div class="group">
-                <div class="relative aspect-square bg-zinc-100 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 shadow-sm">
-                    <img src="https://dl.dropbox.com/scl/fi/j1ln81m16v4rsjedh2j7q/PHOTO-2026-04-25-19-07-25.jpg?rlkey=ofh84qu7iudg9kd7sk58nz5s0&raw=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Flow Station">
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://dl.dropbox.com/scl/fi/j1ln81m16v4rsjedh2j7q/PHOTO-2026-04-25-19-07-25.jpg?rlkey=ofh84qu7iudg9kd7sk58nz5s0&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Flow Station">
                 </div>
-                <h3 class="mt-4 font-black uppercase tracking-tight text-sm md:text-lg text-black">Flow Station</h3>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Flow Station</h4>
+                </div>
             </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/i0zye6r4clfhidncq7lfb/PHOTO-2026-04-28-09-45-56-1.jpg?rlkey=4ffb9hlqlllobg2s4bb74vovk&st=sirw58vk&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Storage Lockers">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">IDK</h4>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/1cghkla9a2inledoa1qrt/PHOTO-2026-04-28-09-45-56-2.jpg?rlkey=1ynmwtl4wcjgwwnkxnsrkjm6b&st=gaiybskn&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Round Library Table">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">IDK</h4>
+                </div>
+            </div>
+
+           <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/nsjib0hhuz7be1k2lg405/PHOTO-2026-04-28-09-45-57-1.jpg?rlkey=xoekep1nmy11lz9dgc7h3sqpx&st=r06njv41&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Teacher's Chair">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">IDK</h4>
+                </div>
+            </div>
+
+            
 
         </div>
 
-        <div class="mt-20 pt-10 border-t border-zinc-100">
-            <button onclick="showPage('schools')" class="group text-zinc-400 hover:text-black font-black uppercase tracking-widest text-[10px] flex items-center gap-4 transition-all">
-                <i class="fas fa-chevron-left group-hover:-translate-x-2 transition-transform"></i> 
-                Back to School Supplies
-            </button>
-        </div>
+      <div class="mt-20 pt-10 border-t border-zinc-100">
+        <button type="button" 
+                onclick="
+                    event.preventDefault(); 
+                    this.closest('section').classList.add('hidden'); 
+                    showPage('schools');
+                " 
+                class="group text-zinc-400 hover:text-black font-black uppercase tracking-widest text-[10px] flex items-center gap-4 transition-all cursor-pointer">
+            <i class="fas fa-chevron-left group-hover:-translate-x-2 transition-transform"></i> 
+            Back to School
+        </button>
     </div>
+</div>
 </section>
+   
+
+   <section id="page-lab" class="hidden min-h-screen bg-white pt-40 pb-20">
+    <div class="container mx-auto px-6">
+        <div class="mb-16 border-l-8 border-primary pl-8 reveal">
+            <h1 class="text-5xl md:text-7xl font-black text-black uppercase tracking-tighter leading-none">
+                Lab Gallary<br> <span class="text-primary">Showcase</span>
+            </h1>
+            <p class="mt-4 text-zinc-500 font-bold uppercase tracking-[0.2em] text-sm max-w-xl">
+                Laboratory Installed Across Kenyan Schools
+            </p>
+        </div>
+
+   
+
+   <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            <!-- Installation 1 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/tirfd3kq4asfjkg8mljsj/PHOTO-2026-04-28-09-45-40.jpg?rlkey=jwsb3eeiiwjaq7tu98aa2qu2j&st=ocdafmse&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Chemistry Wing">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+            <!-- Installation 2 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/xx6cpuwhwxykhz2ms18m4/PHOTO-2026-04-28-09-45-41-1.jpg?rlkey=tzpskj70gbaj75gz5c474uouw&st=9ss481pc&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Gas Piping System">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+            <!-- Installation 3 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/832z6nlfl3dsn346jz9qf/PHOTO-2026-04-28-09-45-41.jpg?rlkey=z86igd50s009q9m2oc8rwxq3f&st=mheryvfb&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Storage Units">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+            <!-- Installation 4 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/tta6dyaft7g2m8rqd3cdr/PHOTO-2026-04-28-09-45-42-1.jpg?rlkey=1tnbq926miiglb2kklbywmnge&st=thl0pu1e&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Biology Suite">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+            <!-- Installation 5 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/s7zq5lzvc47rgkkiginx5/PHOTO-2026-04-28-09-45-42.jpg?rlkey=jfibh0lvf3lqk8mllnqt8qvzq&st=k2i3oroz&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Research Station">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+            <!-- Installation 6 -->
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://www.dropbox.com/scl/fi/8zusa8n8qy4nmerun28z8/PHOTO-2026-04-28-09-45-43.jpg?rlkey=3e2tk4i9uih210po43ksw3sko&st=1a7dom3n&raw=1" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                         alt="Equipment Hub">
+                </div>
+                <div class="p-4 border-t border-zinc-50">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest"></h4>
+                </div>
+            </div>
+
+        </div>
+
+ <div class="mt-20 pt-10 border-t border-zinc-100">
+        <button type="button" 
+                onclick="
+                    event.preventDefault(); 
+                    this.closest('section').classList.add('hidden'); 
+                    showPage('labs');
+                " 
+                class="group text-zinc-400 hover:text-black font-black uppercase tracking-widest text-[10px] flex items-center gap-4 transition-all cursor-pointer">
+            <i class="fas fa-chevron-left group-hover:-translate-x-2 transition-transform"></i> 
+            Back to Lab Installations
+        </button>
+    </div>
+</div>
+</section>
+
       
 
 
     <!-- Footer -->
-  <footer class="bg-dark text-white pt-24 pb-12 border-t border-white/5">
-    <div class="container mx-auto px-6">
-        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-16 mb-20">
-            
-            <div class="space-y-8">
-                <div class="w-48 h-14 bg-transparent overflow-hidden flex items-center justify-start">
-                    <img src="https://lh3.googleusercontent.com/u/0/d/1P9lG4Jg1jzWWxaN0gR-PL4wNPwfNO1sg" alt="Pillar Logo" class="w-full h-full object-contain">
-                </div>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Pillar Educational Publishers is committed to transforming Kenyan education through precision engineering and high-quality learning resources.
-                </p>
-                <div class="flex gap-4">
-                    <a href="https://www.tiktok.com/@pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
-                        <i class="fab fa-tiktok text-sm group-hover:scale-110 transition-transform"></i>
-                    </a>
-                    <a href="https://www.instagram.com/pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
-                        <i class="fab fa-instagram text-sm group-hover:scale-110 transition-transform"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
-                        <i class="fab fa-linkedin-in text-sm group-hover:scale-110 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Navigation</h4>
-                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
-                    <li><a href="#" onclick="showPage('home')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Home Overview</a></li>
-                    <li><a href="#" onclick="showPage('labs')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Science Installations</a></li>
-                    <li><a href="#" onclick="showPage('schools')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> School Catalog</a></li>
-                    <li><a href="#" onclick="showPage('logistics')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Logistics & Supply</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-orange decoration-2 underline-offset-8">Our Solutions</h4>
-                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
-                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
-                        <span class="w-1 h-1 bg-orange rounded-full"></span> Lab Design & Equipment
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
-                        <span class="w-1 h-1 bg-orange rounded-full"></span> School Furniture
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
-                        <span class="w-1 h-1 bg-orange rounded-full"></span> Revision Books
-                    </li>
-                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
-                        <span class="w-1 h-1 bg-orange rounded-full"></span> Weather Stations
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Connect With Us</h4>
-                <div class="space-y-6">
-                    <div class="group">
-                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Official Email</p>
-                        <a href="mailto:pillareducationpublishersk@gmail.com" class="text-white text-sm font-bold hover:text-primary transition-all flex items-center gap-2">
-                            <i class="fas fa-envelope text-primary"></i> pillareducationpublishersk@gmail.com
-                        </a>
-                    </div>
-                    <div class="group">
-                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Contact Us At</p>
-                        <div class="flex flex-col gap-3">
-                            <a href="tel:+254721747998" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
-                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 721 747 998
-                            </a>
-                            <a href="tel:+254707671805" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
-                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 707 671 805
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em]">
-                © 2026 PILLAR EDUCATIONAL PUBLISHERS. ALL RIGHTS RESERVED.
-            </div>
-            <div class="flex gap-8 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
-                <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition">Terms of Service</a>
-            </div>
-        </div>
-    </div>
-</footer>
+ 
 
   
 
@@ -1220,7 +1452,7 @@ img, video, canvas {
         }
 function showPage(pageId) {
     document.body.style.overflow = "auto";
-    const pages = ['home', 'labs', 'schools', 'logistics', 'gallery', 'furniture'];
+    const pages = ['home', 'labs', 'schools', 'logistics', 'gallery', 'furniture', 'lab', 'video'];
     
     pages.forEach(id => {
         const page = document.getElementById('page-' + id);
@@ -1433,7 +1665,500 @@ setDocHeight();
             }
         });
     });
+
+       
+   let selectedStars = 0;
+const reviews = [];
+
+// Fix: Update showPage to properly hide/show sections
+function showPage(pageId) {
+    // Hide all sections first
+    document.querySelectorAll('.page-content').forEach(section => {
+        section.classList.add('hidden');
+    });
+    
+    // Show target section
+    const target = document.getElementById('page-' + pageId);
+    if(target) {
+        target.classList.remove('hidden');
+        window.scrollTo(0, 0); // Always scroll to top when switching
+    }
+}
+
+function setFormRating(n) {
+    selectedStars = n;
+    const stars = document.querySelectorAll('#star-input i');
+    stars.forEach((star, index) => {
+        star.classList.toggle('text-primary', index < n);
+        star.classList.toggle('text-zinc-200', index >= n);
+    });
+}
+
+function submitNewReview() {
+    const name = document.getElementById('review-name').value;
+    const text = document.getElementById('review-content').value;
+
+    if (!name || !text || selectedStars === 0) return alert("Fill all fields!");
+
+    // Save locally
+    const newReview = { name, text, rating: selectedStars };
+    reviews.unshift(newReview); // Add to start of list
+
+    // Update the website grid instantly
+    renderReviews();
+    
+    // Reset and return home
+    document.getElementById('review-name').value = '';
+    document.getElementById('review-content').value = '';
+    setFormRating(0);
+    showPage('home');
+    toggleDrawer(true);
+   
+}
+
+function renderReviews() {
+    const grid = document.getElementById('live-reviews-grid');
+    grid.innerHTML = reviews.map(r => `
+        <div class="p-8 bg-white rounded-3xl border border-zinc-100 shadow-sm animate-fade-in">
+            <div class="flex gap-1 text-primary text-[10px] mb-4">
+                ${'<i class="fas fa-star"></i>'.repeat(r.rating)}
+            </div>
+            <p class="text-zinc-500 font-bold text-xs uppercase mb-4 leading-relaxed">"${r.text}"</p>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center font-black text-primary text-[10px]">${r.name}</div>
+                <h5 class="font-black text-[10px] tracking-widest uppercase">${r.name}</h5>
+            </div>
+        </div>
+    `).join('');
+}
+
+       
+           
 </script>
 
+   <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCj3stdJrx_9M1mjeQnF1rrI7EznKdv6WE",
+    authDomain: "pillars-publishers.firebaseapp.com",
+    projectId: "pillars-publishers",
+    storageBucket: "pillars-publishers.firebasestorage.app",
+    messagingSenderId: "519162441791",
+    appId: "1:519162441791:web:ab47b7fc6020c5ce0f888a",
+    measurementId: "G-D143MLC51T"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+   <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    query, 
+    orderBy, 
+    limit 
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCj3stdJrx_9M1mjeQnF1rrI7EznKdv6WE",
+    authDomain: "pillars-publishers.firebaseapp.com",
+    projectId: "pillars-publishers",
+    storageBucket: "pillars-publishers.firebasestorage.app",
+    messagingSenderId: "519162441791",
+    appId: "1:519162441791:web:ab47b7fc6020c5ce0f888a",
+    measurementId: "G-D143MLC51T"
+  };
+
+  // Initialize Services
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Global Interactive Variables
+  window.selectedStars = 0;
+
+  // Expose Navigation & Interaction UI functions to window context
+  window.showPage = showPage;
+  window.setFormRating = setFormRating;
+  window.submitNewReview = submitNewReview;
+
+  // Run automatically when document loads
+  document.addEventListener("DOMContentLoaded", fetchLiveReviews);
+
+  // --- UI INTERACTION FUNCTIONS ---
+  function showPage(pageId) {
+    document.querySelectorAll('.page-content').forEach(section => {
+      section.classList.add('hidden');
+    });
+    const target = document.getElementById('page-' + pageId);
+    if(target) {
+      target.classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function setFormRating(n) {
+    window.selectedStars = n;
+    const stars = document.querySelectorAll('#star-input i');
+    stars.forEach((star, index) => {
+      star.classList.toggle('text-primary', index < n);
+      star.classList.toggle('text-zinc-200', index >= n);
+    });
+  }
+
+  // --- FIREBASE FIRESTORE DATA ACTIONS ---
+  
+  // PUSH ACTION: Save written feedback to Firestore
+  async function submitNewReview() {
+    const nameInput = document.getElementById('review-name');
+    const textInput = document.getElementById('review-content');
+
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+
+    if (!name || !text || window.selectedStars === 0) {
+      return alert("Please fill all fields and select a star rating!");
+    }
+
+    try {
+      // Add data object to 'reviews' collection
+      await addDoc(collection(db, "reviews"), {
+        name: name,
+        text: text,
+        rating: window.selectedStars,
+        timestamp: new Date()
+      });
+
+      // Clear layout elements out
+      nameInput.value = '';
+      textInput.value = '';
+      setFormRating(0);
+       showPage('home');
+      toggleDrawer(true);
+
+      // Instantly load new data into the grid
+      await fetchLiveReviews();
+
+    } catch (error) {
+      console.error("Firestore database submission error: ", error);
+      alert("Could not post your review. Check connection.");
+    }
+  }
+
+  // PULL ACTION: Fetch live reviews and generate UI element blocks
+  async function fetchLiveReviews() {
+    const grid = document.getElementById('live-reviews-grid');
+    if (!grid) return;
+
+    try {
+      // Query settings: descending chronological timestamp order, limited to 6 documents
+      const reviewQuery = query(collection(db, "reviews"), orderBy("timestamp", "desc"), limit(6));
+      const querySnapshot = await getDocs(reviewQuery);
+      
+      if (querySnapshot.empty) {
+        grid.innerHTML = `
+          <div class="p-6 bg-white rounded-2xl border border-zinc-100 italic text-zinc-400 text-sm">
+            No reviews yet. Be the first to share your experience!
+          </div>`;
+        return;
+      }
+
+      let gridHTML = '';
+      querySnapshot.forEach((doc) => {
+        const item = doc.data();
+        
+        const ratingStars = '<i class="fas fa-star"></i>'.repeat(item.rating);
+        const userLetter = item.name ? item.name.charAt(0).toUpperCase() : 'P';
+
+        gridHTML += `
+          <div class="p-8 bg-white rounded-3xl border border-zinc-100 shadow-sm animate-fade-in">
+            <div class="flex gap-1 text-primary text-[10px] mb-4">
+              ${ratingStars}
+            </div>
+            <p class="text-zinc-500 font-bold text-xs uppercase mb-4 leading-relaxed">"${item.text}"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center font-black text-primary text-[10px]">${userLetter}</div>
+              <h5 class="font-black text-[10px] tracking-widest uppercase text-zinc-800">${item.name}</h5>
+            </div>
+          </div>`;
+      });
+
+      grid.innerHTML = gridHTML;
+
+    } catch (error) {
+      console.error("Firestore database download error: ", error);
+      grid.innerHTML = `<p class="text-xs text-red-500 font-bold p-4">Database loading issue.</p>`;
+    }
+  }
+</script>
+
+   <div id="review-left-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+    
+    <div id="drawer-dimmer" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ease-in-out pointer-events-none" onclick="toggleDrawer(false)"></div>
+    
+    <div id="drawer-side-panel" class="absolute top-0 left-0 h-full w-full sm:w-[400px] bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col pointer-events-auto">
+        
+        <div class="p-6 border-b border-zinc-100 flex items-center justify-between bg-zinc-50">
+            <div>
+                <h3 class="font-black text-xs uppercase tracking-widest text-zinc-800">Reviews Panel</h3>
+                <p class="text-[9px] text-zinc-400 font-bold uppercase mt-0.5">Verified Database Stream</p>
+            </div>
+            <button onclick="toggleDrawer(false)" class="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-500 transition-colors">
+                <i class="fas fa-times text-xs"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 bg-zinc-50/50">
+            <div id="live-reviews-grid" class="space-y-4">
+                <div class="p-6 bg-white rounded-2xl border border-zinc-100 italic text-zinc-400 text-sm text-center">
+                    Loading live student reviews...
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-4 border-t border-zinc-100 bg-white">
+            <button onclick="toggleDrawer(false); showPage('review-form')" class="w-full bg-dark text-white font-black text-[10px] uppercase tracking-widest py-4 rounded-xl hover:bg-primary hover:text-black transition-all text-center block">
+                Write & Send A Review
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleDrawer(open) {
+    const container = document.getElementById('review-left-drawer');
+    const dimmer = document.getElementById('drawer-dimmer');
+    const panel = document.getElementById('drawer-side-panel');
+
+    if (open) {
+        container.classList.remove('pointer-events-none');
+        dimmer.classList.remove('pointer-events-none');
+        dimmer.classList.add('opacity-100');
+        panel.classList.remove('-translate-x-full');
+    } else {
+        container.classList.add('pointer-events-none');
+        dimmer.classList.add('pointer-events-none');
+        dimmer.classList.remove('opacity-100');
+        panel.classList.add('-translate-x-full');
+    }
+}
+</script>
+
+
+   <section id="page-video" class="page-content hidden min-h-screen bg-white pt-40 pb-20">
+    <div class="container mx-auto px-6">
+        <div class="mb-16 border-l-8 border-primary pl-8 reveal">
+            <h1 class="text-5xl md:text-7xl font-black text-black uppercase tracking-tighter leading-none">
+                Project <br> <span class="text-primary">Showcase</span>
+            </h1>
+            <p class="mt-4 text-zinc-500 font-bold uppercase tracking-[0.2em] text-sm max-w-xl">
+                6 Verified Laboratory Installations Across Kenyan Schools
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+            
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/gg5s8xxnoftp4wrkihmkv/6b9b2fb7-a29e-4597-80f5-db967d7e4b8b.mov?rlkey=a67lqtuay97zt4l5pdfsd2nj5&st=8vuqpixo&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Logos Christian School</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Nairobi</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/pz7qpe734l7c66yowcwzd/VIDEO-2026-04-25-19-04-40.mov?rlkey=gipw7zvcufyacbmxnwuiea5bl&st=ie0cdv86&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">MT ST Mary Girl's JSS</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Baringo</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/2hae8xg4xcfwlvala7xjp/VIDEO-2026-04-25-19-07-23.mp4?rlkey=1lgcxtog63t8bqiecrdko5pej&st=dwxb3fgc&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Marry Immaculate Primary</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Eldoret</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/tkt3e7wy5msqr12aauel7/VIDEO-2026-04-25-19-04-41.mp4?rlkey=1qsvrd85rgprp5lbxjtx9gqx3&st=eoim9da3&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Encheshoroi Dreamers Academy</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Narok</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/8a9cq4nynilp6pc52ezmw/VIDEO-2026-04-25-19-04-39.mp4?rlkey=o35igzvnvwu2pw5gl0kyxzs1b&st=zjj6pv03&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Installation Overview A</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Verified</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/gg5s8xxnoftp4wrkihmkv/6b9b2fb7-a29e-4597-80f5-db967d7e4b8b.mov?rlkey=a67lqtuay97zt4l5pdfsd2nj5&st=8vuqpixo&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Installation Overview B</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Verified</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/pz7qpe734l7c66yowcwzd/VIDEO-2026-04-25-19-04-40.mov?rlkey=gipw7zvcufyacbmxnwuiea5bl&st=ie0cdv86&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Installation Overview C</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Verified</span>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div class="aspect-video bg-black overflow-hidden">
+                    <video class="w-full h-full object-cover" controls playsinline preload="metadata">
+                        <source src="https://www.dropbox.com/scl/fi/2hae8xg4xcfwlvala7xjp/VIDEO-2026-04-25-19-07-23.mp4?rlkey=1lgcxtog63t8bqiecrdko5pej&st=dwxb3fgc&raw=1" type="video/mp4">
+                    </video>
+                </div>
+                <div class="p-4 border-t border-zinc-50 flex justify-between items-center">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest">Installation Overview D</h4>
+                    <span class="text-[9px] font-bold text-primary uppercase">Verified</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-20 pt-10 border-t border-zinc-100">
+            <button type="button" onclick="showPage('labs')" class="group text-zinc-400 hover:text-black font-black uppercase tracking-widest text-[10px] flex items-center gap-4 transition-all cursor-pointer">
+                <i class="fas fa-chevron-left group-hover:-translate-x-2 transition-transform"></i> 
+                Back to Lab Installations
+            </button>
+        </div>
+    </div>
+</section>
+   
+
+    <footer class="bg-dark text-white pt-24 pb-12 border-t border-white/5">
+    <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-16 mb-20">
+            
+            <div class="space-y-8">
+                <div class="w-48 h-14 bg-transparent overflow-hidden flex items-center justify-start">
+                    <img src="https://lh3.googleusercontent.com/u/0/d/1P9lG4Jg1jzWWxaN0gR-PL4wNPwfNO1sg" alt="Pillar Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Pillar Educational Publishers is committed to transforming Kenyan education through precision engineering and high-quality learning resources.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.tiktok.com/@pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-tiktok text-sm group-hover:scale-110 transition-transform"></i>
+                    </a>
+                    <a href="https://www.instagram.com/pillar_educational" target="_blank" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-instagram text-sm group-hover:scale-110 transition-transform"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center border border-white/10 hover:border-primary hover:text-primary transition-all group">
+                        <i class="fab fa-linkedin-in text-sm group-hover:scale-110 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Navigation</h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
+                    <li><a href="#" onclick="showPage('home')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Home Overview</a></li>
+                    <li><a href="#" onclick="showPage('labs')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Science Installations</a></li>
+                    <li><a href="#" onclick="showPage('schools')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> School Catalog</a></li>
+                    <li><a href="#" onclick="showPage('logistics')" class="hover:text-primary transition-colors flex items-center gap-2"><span>→</span> Logistics & Supply</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-orange decoration-2 underline-offset-8">Our Solutions</h4>
+                <ul class="space-y-4 text-gray-400 text-sm font-semibold">
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Lab Design & Equipment
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> School Furniture
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Revision Books
+                    </li>
+                    <li class="flex items-center gap-2 hover:text-orange transition-colors cursor-default">
+                        <span class="w-1 h-1 bg-orange rounded-full"></span> Weather Stations
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-black uppercase tracking-widest text-sm mb-8 underline decoration-primary decoration-2 underline-offset-8">Connect With Us</h4>
+                <div class="space-y-6">
+                    <div class="group">
+                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Official Email</p>
+                        <a href="mailto:pillareducationpublishersk@gmail.com" class="text-white text-sm font-bold hover:text-primary transition-all flex items-center gap-2">
+                            <i class="fas fa-envelope text-primary"></i> pillareducationpublishersk@gmail.com
+                        </a>
+                    </div>
+                    <div class="group">
+                        <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest mb-1">Contact Us At</p>
+                        <div class="flex flex-col gap-3">
+                            <a href="tel:+254721747998" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
+                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 721 747 998
+                            </a>
+                            <a href="tel:+254707671805" class="w-fit px-4 py-2 bg-zinc-900 border border-white/5 rounded-lg text-white text-sm font-black hover:border-primary hover:shadow-[0_0_15px_rgba(57,255,20,0.1)] transition-all">
+                                <i class="fas fa-phone-alt text-primary mr-2"></i> +254 707 671 805
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-gray-500 text-[10px] font-bold uppercase tracking-[0.3em]">
+                © 2026 PILLAR EDUCATIONAL PUBLISHERS. ALL RIGHTS RESERVED.
+            </div>
+            <div class="flex gap-8 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+           
 </body>
 </html>
